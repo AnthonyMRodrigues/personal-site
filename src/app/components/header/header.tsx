@@ -10,31 +10,31 @@ export default function Header() {
             id: 'portfolio',
             label: 'Portfolio',
             icon: 'pi pi-briefcase',
-            className: 'justify-center bg-site-secondary-color rounded-full mx-5 menu-item-black',
+            className: 'justify-center bg-site-secondary-color rounded-full mx-5 menu-item-black border-site-tertiary-color border-2',
             url: '/portfolio',
         },
         {
             label: 'Skills',
             icon: 'pi pi-link',
             url: '/skills',
-            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full',
+            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full border-site-tertiary-color border-2',
         },
         {
             label: 'About Me',
             icon: 'pi pi-user',
             url: '/about',
-            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full mx-5',
+            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full mx-5 border-site-tertiary-color border-2',
         },
         {
             label: 'Contact',
             icon: 'pi pi-envelope',
             url: '/contact',
-            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full',
+            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full border-site-tertiary-color border-2',
         }
     ];
     return (
-        <>
-            <div className={"grid grid-cols-4 grid-gap-2 bg-site-primary-color h-16"}>
+        <div className={"sticky top-0 z-50"}>
+            <div className={"grid grid-cols-4 grid-gap-1 bg-site-primary-color h-16"}>
                 <div className={"mt-1.5 ml-40"}>
                     <Image src={"/logo.png"} alt={"Anthony Rodrigues"} width={50} height={50} fill={false}/>
                 </div>
@@ -45,6 +45,6 @@ export default function Header() {
                     <Menubar model={items} className={"bg-site-primary-color"}/>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
