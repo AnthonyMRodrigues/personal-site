@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Image from "next/image";
 
@@ -6,19 +7,6 @@ import { Menubar } from 'primereact/menubar';
 import './header.css';
 export default function Header() {
     const items = [
-        {
-            id: 'portfolio',
-            label: 'Portfolio',
-            icon: 'pi pi-briefcase',
-            className: 'justify-center bg-site-secondary-color rounded-full mx-5 menu-item-black border-site-tertiary-color border-2',
-            url: '/portfolio',
-        },
-        {
-            label: 'Skills',
-            icon: 'pi pi-link',
-            url: '/skills',
-            className: 'justify-center bg-site-secondary-color menu-item-black rounded-full border-site-tertiary-color border-2',
-        },
         {
             label: 'About Me',
             icon: 'pi pi-user',

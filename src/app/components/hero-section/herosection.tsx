@@ -14,18 +14,18 @@ export default function HeroSection() {
                     <br/>
                     <h1 className={"text-7xl break-words"}>
                         I&apos;m a experient <ReactTyped strings={
-                            ["Backend Software Engineer", "Data Engineer", "Data Architect"]
+                            ["Software Engineer", "Data Engineer", "Data Architect"]
                         } typeSpeed={100} loop={true} backSpeed={100}/>
                     </h1>
                 </>
-                <div className={"m-3"}>
+                <div className={"m-6"}>
                     <a href={"/portfolio"}
-                       className={"p-button-raised p-button-rounded rounded-full bg-site-tertiary-color text-white p-2 mr-5"}>
-                        Discover my data skills
+                       className={"p-button-raised p-button-rounded rounded-full bg-site-tertiary-color text-white p-3 mr-5"}>
+                        Discover my data expertise
                     </a>
 
                     <a href={"/contact"}
-                       className={"p-button-raised p-button-rounded rounded-full bg-site-secondary-color p-2 border-site-tertiary-color border-2 text-black"}>
+                       className={"p-button-raised p-button-rounded rounded-full bg-site-secondary-color p-3 border-site-tertiary-color border-2 text-black"}>
                         Let&apos;s Talk
                     </a>
                 </div>

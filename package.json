@@ -20,12 +20,14 @@
     "primereact": "10.6.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-tagcloud": "2.3.3",
     "react-typed": "2.0.12"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-tagcloud": "2.3.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.2",
     "postcss": "^8",

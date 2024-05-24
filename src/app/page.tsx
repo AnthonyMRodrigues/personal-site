@@ -12,7 +12,7 @@ export default function Home() {
         <Header />
         <HeroSection />
         <MiniAbout />
-        <Skills />
+        {/*<Skills />*/}
         <Footer />
     </>
   );
