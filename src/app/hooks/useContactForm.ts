@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
 
-export const useContactForm = () => {
+export const useContactForm = (onSuccess: () => void, onError: () => void) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
-    const [error, setError] = useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         setLoading(true);
-        setError('');
-        setSuccess(false);
 
         try {
             const response = await fetch('/api/send-email', {
@@ -25,16 +21,15 @@ export const useContactForm = () => {
 
             const data = await response.json();
 
-            if (response.ok) {
-                setSuccess(true);
-                setName('');
-                setEmail('');
-                setMessage('');
-            } else {
-                setError(data.error || 'Something went wrong');
+            if (!response.ok) {
+                throw new Error(data.error);
             }
+            setName('');
+            setEmail('');
+            setMessage('');
+            onSuccess();
         } catch (error) {
-            setError('Failed to send email');
+            onError();
         } finally {
             setLoading(false);
         }
@@ -48,8 +43,6 @@ export const useContactForm = () => {
         message,
         setMessage,
         loading,
-        success,
-        error,
         handleSubmit,
     };
 };

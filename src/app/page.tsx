@@ -11,7 +11,7 @@ export default function Home() {
     <>
         <Header />
         <HeroSection />
-        <MiniAbout />
+        {/*<MiniAbout />*/}
         {/*<Skills />*/}
         <Footer />
     </>

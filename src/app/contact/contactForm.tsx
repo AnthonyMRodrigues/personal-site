@@ -1,15 +1,19 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import { Card } from 'primereact/card';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { FloatLabel } from 'primereact/floatlabel';
+import { Toast } from 'primereact/toast';
+
 
 import { useContactForm } from '../hooks/useContactForm';
 
 const ContactForm: React.FC = () => {
+    const toast = useRef<Toast>(null);
+
     const {
         name,
         setName,
@@ -18,19 +22,34 @@ const ContactForm: React.FC = () => {
         message,
         setMessage,
         loading,
-        success,
-        error,
         handleSubmit,
-    } = useContactForm();
+    } = useContactForm(() => {
+        toast.current?.show({
+            severity: 'success',
+            summary: '📈 Data received! 📈',
+            detail: 'Your message made it through my pipeline like a well-optimized ETL job. Can\'t wait to analyze it further. 😉',
+            life: 5000,
+            className: "animate-fade-in animate-fade-out bg-toast-success-email text-black",
+        });
+    }, () => {
+        toast.current?.show({
+            severity: 'error',
+            summary: '📶 Oops Signal lost! 📶',
+            detail: 'Sorry, your message didn\'t quite make it through, but I\'m resilient like a well-designed system. Try re-sending or connecting with me on LinkedIn.',
+            life: 5000,
+            className: 'animate-fade-in animate-fade-out bg-toast-error-email text-black',
+        });
+    });
     const header_message = "Let's Unlock the Power of Your Data.";
     const sub_header_message = "Data issues are giving you nightmares?"
     const sub_header_message_2 = "Let's put those bad data dreams to rest.";
 
     return (
         <div className="flex justify-center items-center top-28 relative pl-96">
+            <Toast ref={toast} position="top-center" />
             <div className="relative">
                 <Card
-                    className={"absolute -translate-x-[27rem] -translate-y-5 w-[500px] h-[673px] bg-hero-pattern rounded-2xl"}>
+                    className={"absolute -translate-x-[27rem] -translate-y-5 w-[500px] h-[673px] bg-cover bg-contact-card rounded-2xl"}>
                 </Card>
 
                 <Card className={"w-[500px] h-[673px] bg-contact-form-bg text-black rounded-2xl"}>
@@ -45,16 +64,18 @@ const ContactForm: React.FC = () => {
                     </div>
                     <form className={"left-24 relative"} onSubmit={handleSubmit}>
                         <div className="mb-6">
+                            {/*@ts-ignore*/}
                             <FloatLabel>
+                                <label htmlFor="name" className={"text-black"}>Your Name</label>
                                 <InputText
                                     id="name" className={"text-black bg-site-secondary-color w-80 p-3"}
                                     value={name} onChange={(e) => setName(e.target.value)}
                                     required={true}
                                 />
-                                <label htmlFor="name" className={"text-black"}>Your Name</label>
                             </FloatLabel>
                         </div>
                         <div className="mb-6">
+                            {/*@ts-ignore*/}
                             <FloatLabel>
                                 <label htmlFor="email" className={"text-black text-center"}>Your Email</label>
                                 <InputText id="email"
@@ -66,6 +87,7 @@ const ContactForm: React.FC = () => {
                             </FloatLabel>
                         </div>
                         <div className="mb-6">
+                            {/*@ts-ignore*/}
                             <FloatLabel>
                                 <label htmlFor="message" className="text-black">Your Message</label>
                                 <InputTextarea
