@@ -12,7 +12,7 @@ provider "digitalocean" {
 }
 
 import {
-  id = "27540faa-1d98-466a-a76e-e4cfbcbe28ea"
+  id = "change-me"
   to = digitalocean_project.personal_site_project
 }
 
