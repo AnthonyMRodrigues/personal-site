@@ -19,9 +19,9 @@ export default function MiniAbout() {
                 </div>
                 <div className={"mt-10 w-6/12"}>
                     <p className={"text-2xl text-pretty"}>
-                        I'm a data engineer passionate about solving complex problems and turning raw information into
+                        I&apos;m a data engineer passionate about solving complex problems and turning raw information into
                         actionable insights. With a decade of industry experience, I bring a diverse perspective that
-                        blends technical expertise with a love of learning, art, and music. Let's explore how I can
+                        blends technical expertise with a love of learning, art, and music. Let&apos;s explore how I can
                         apply my unique skillset to your next data project.
                     </p>
                 </div>
