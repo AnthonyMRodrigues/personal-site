@@ -44,6 +44,16 @@ const ContactForm: React.FC = () => {
     const sub_header_message = "Data issues are giving you nightmares?"
     const sub_header_message_2 = "Let's put those bad data dreams to rest.";
 
+    const showMessage = (event: any) => {
+        toast.current?.show({
+            severity: 'error',
+            summary: ' Under Construction!',
+            detail: 'Sorry, I\'m finishing the sending email logic, but I\'m finishing soon. Try connecting with me on LinkedIn.',
+            life: 10000,
+            className: 'animate-fade-in animate-fade-out bg-toast-error-email text-black',
+        });
+    };
+
     return (
         <div className="flex justify-center items-center top-28 relative pl-96">
             <Toast ref={toast} position="top-center" />
@@ -70,6 +80,7 @@ const ContactForm: React.FC = () => {
                                 <InputText
                                     id="name" className={"text-black bg-site-secondary-color w-80 p-3"}
                                     value={name} onChange={(e) => setName(e.target.value)}
+                                    onFocus={(e) => showMessage(e)}
                                     required={true}
                                 />
                             </FloatLabel>
@@ -82,6 +93,7 @@ const ContactForm: React.FC = () => {
                                            className={"text-black bg-site-secondary-color w-80 p-3"}
                                            value={email} onChange={(e) => setEmail(e.target.value)}
                                            required={true}
+                                           onFocus={(e) => showMessage(e)}
                                            type={"email"}
                                 />
                             </FloatLabel>
@@ -96,12 +108,13 @@ const ContactForm: React.FC = () => {
                                     autoResize={true}
                                     value={message} onChange={(e) => setMessage(e.target.value)}
                                     required={true}
+                                    onFocus={(e) => showMessage(e)}
                                 />
                             </FloatLabel>
                         </div>
                         <Button
                             type="submit" label={loading ? "Sending..." : "Send Message"}
-                            disabled={loading}
+                            disabled={true}
                             className={"p-button-rounded rounded-full bg-site-tertiary-color p-3 border-site-tertiary-color border-2 text-white w-48 left-32"}
                         />
                     </form>
