@@ -35,7 +35,7 @@ const AboutMe = () => {
                     </div>
                     <div className="md:w-1/2 flex justify-center md:justify-end mt-10 md:mt-0">
                         <Image
-                            src="/IMG_3077.png" // Update with your actual image path
+                            src="/about_bg.jpg" // Update with your actual image path
                             alt="Profile Picture"
                             width={400}
                             height={400}

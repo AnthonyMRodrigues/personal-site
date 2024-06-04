@@ -5,7 +5,7 @@ import {ReactTyped} from "react-typed";
 
 export default function HeroSection() {
     return (
-        <section id={"hero-section"} className={"text-white bg-hero h-[62rem] bg-[length:100%_280%] bg-no-repeat bg-center"}>
+        <section id={"hero-section"} className={"text-white bg-hero h-screen bg-cover bg-no-repeat bg-center"}>
             <div className={"relative text-center top-1/4 right-4/4 size-5/12"}>
                 <>
                     <h1 className={"text-7xl break-words"}>

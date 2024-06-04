@@ -25,10 +25,10 @@ resource "digitalocean_domain" "personal_site_domain" {
   name = var.domain_name
 }
 
-# import {
-#   id = "2041b4a7-0805-4060-b7fc-2621a0d406e4"
-#   to = digitalocean_app.personal_site_app
-# }
+import {
+  id = "2041b4a7-0805-4060-b7fc-2621a0d406e4"
+  to = digitalocean_app.personal_site_app
+}
 
 resource "digitalocean_app" "personal_site_app" {
   spec {
