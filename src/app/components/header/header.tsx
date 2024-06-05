@@ -23,11 +23,10 @@ export default function Header() {
     return (
         <div className={"sticky top-0 z-50"}>
             <div className={"grid grid-cols-3 grid-gap-1 bg-site-primary-color h-16"}>
-                {/*<div className={"mt-1.5 ml-72"}>*/}
-                {/*    <Image src={"/logo.png"} alt={"Anthony Rodrigues"} width={50} height={50} fill={false}/>*/}
-                {/*</div>*/}
-                <div className={"flex mt-4 ml-72"}>
-                    <a href={"/"}><h1 >Anthony Rodrigues</h1></a>
+                <div className={"mt-1.5 ml-72"}>
+                    <a href={"/"}>
+                        <Image src={"/logo.jpg"} alt={"Anthony Rodrigues"} width={50} height={50} fill={false}/>
+                    </a>
                 </div>
                 <div className={"col-span-2 col-end-7 mr-72"}>
                     <Menubar model={items} className={"bg-site-primary-color"}/>
