@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "tf-project-states"
+    bucket = ""
     key    = "us-east-1/personal-site/terraform.tfstate"
     region = "us-east-1"
   }
