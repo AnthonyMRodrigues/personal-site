@@ -1,33 +1,37 @@
-import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
+import { SES } from 'aws-sdk';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
     try {
         const { name, email, message } = await request.json();
-
-        // Create a transporter object
-        const transporter = nodemailer.createTransport({
-            host: 'smtp.example.com', // replace with your SMTP server
-            port: 587,
-            secure: false, // true for 465, false for other ports
-            auth: {
-                user: process.env.SMTP_USER, // SMTP user
-                pass: process.env.SMTP_PASS, // SMTP password
-            },
-        });
+        const ses = new SES({region: process.env.REGION_AWS});
 
         // Set up email data
-        const mailOptions = {
-            from: '"Contact Form" <no-reply@example.com>', // sender address
-            to: 'your-email@example.com', // list of receivers
-            subject: 'New Contact Form Submission', // Subject line
-            text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`, // plain text body
+        const params = {
+            Destination: {
+                ToAddresses: [process.env.EMAIL_ADDRESS], // list of receivers
+            },
+            Message: {
+                Body: {
+                    Text: {
+                        Charset: 'UTF-8',
+                        Data: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`, // plain text body
+                    },
+                },
+                Subject: {
+                    Charset: 'UTF-8',
+                    Data: 'New Contact Form Submission', // Subject line
+                },
+            },
+            Source: process.env.SENDER_EMAIL_ADDRESS, // sender address
+            ReplyToAddresses: [process.env.EMAIL_ADDRESS] // list of reply-to addresses
         };
 
         // Send email
-        await transporter.sendMail(mailOptions);
+        await ses.sendEmail(params).promise();
 
         return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+
     } catch (error) {
         return NextResponse.json({ error: 'Error sending email', details: (error as Error).message }, { status: 500 });
     }

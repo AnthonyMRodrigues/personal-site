@@ -80,7 +80,7 @@ const ContactForm: React.FC = () => {
                                 <InputText
                                     id="name" className={"text-black bg-site-secondary-color w-80 p-3"}
                                     value={name} onChange={(e) => setName(e.target.value)}
-                                    onFocus={(e) => showMessage(e)}
+                                    // onFocus={(e) => showMessage(e)}
                                     required={true}
                                 />
                             </FloatLabel>
@@ -93,7 +93,7 @@ const ContactForm: React.FC = () => {
                                            className={"text-black bg-site-secondary-color w-80 p-3"}
                                            value={email} onChange={(e) => setEmail(e.target.value)}
                                            required={true}
-                                           onFocus={(e) => showMessage(e)}
+                                           // onFocus={(e) => showMessage(e)}
                                            type={"email"}
                                 />
                             </FloatLabel>
@@ -108,13 +108,13 @@ const ContactForm: React.FC = () => {
                                     autoResize={true}
                                     value={message} onChange={(e) => setMessage(e.target.value)}
                                     required={true}
-                                    onFocus={(e) => showMessage(e)}
+                                    // onFocus={(e) => showMessage(e)}
                                 />
                             </FloatLabel>
                         </div>
                         <Button
                             type="submit" label={loading ? "Sending..." : "Send Message"}
-                            disabled={true}
+                            disabled={loading}
                             className={"p-button-rounded rounded-full bg-site-tertiary-color p-3 border-site-tertiary-color border-2 text-white w-48 left-32"}
                         />
                     </form>

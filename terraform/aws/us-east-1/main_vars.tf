@@ -30,7 +30,7 @@ variable "my_amplify_app_name" {
     description = "Amplify app name"
 }
 
-variable "app_env_vars" {
+variable "public_app_env_vars" {
     type = object({
         INITIAL_YEAR = number
         GITHUB_ACCOUNT = string

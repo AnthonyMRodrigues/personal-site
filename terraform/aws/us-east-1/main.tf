@@ -43,7 +43,7 @@ resource "aws_amplify_app" "my_amplify_app" {
                   - .next/cache/**/*
                   - .npm/**/*
             EOT
-  platform = "WEB_COMPUTE"
+  platform = var.amplify_platform
   repository = var.github_repo
   oauth_token = var.github_token
   custom_rule {
@@ -52,19 +52,23 @@ resource "aws_amplify_app" "my_amplify_app" {
     status = "404-200"
   }
   environment_variables = {
-    NEXT_PUBLIC_INITIAL_YEAR = var.app_env_vars.INITIAL_YEAR
-    NEXT_PUBLIC_GITHUB_ACCOUNT = var.app_env_vars.GITHUB_ACCOUNT
-    NEXT_PUBLIC_LINKEDIN_ACCOUNT = var.app_env_vars.LINKEDIN_ACCOUNT
-    NEXT_PUBLIC_TELEGRAM_ACCOUNT = var.app_env_vars.TELEGRAM_ACCOUNT
-    NEXT_PUBLIC_GOODREADS_ACCOUNT = var.app_env_vars.GOODREADS_ACCOUNT
-    NEXT_PUBLIC_MEDIUM_ACCOUNT = var.app_env_vars.MEDIUM_ACCOUNT
+    NEXT_PUBLIC_INITIAL_YEAR = var.public_app_env_vars.INITIAL_YEAR
+    NEXT_PUBLIC_GITHUB_ACCOUNT = var.public_app_env_vars.GITHUB_ACCOUNT
+    NEXT_PUBLIC_LINKEDIN_ACCOUNT = var.public_app_env_vars.LINKEDIN_ACCOUNT
+    NEXT_PUBLIC_TELEGRAM_ACCOUNT = var.public_app_env_vars.TELEGRAM_ACCOUNT
+    NEXT_PUBLIC_GOODREADS_ACCOUNT = var.public_app_env_vars.GOODREADS_ACCOUNT
+    NEXT_PUBLIC_MEDIUM_ACCOUNT = var.public_app_env_vars.MEDIUM_ACCOUNT
+    REGION_AWS = var.private_app_env_vars.AWS_REGION
+    SENDER_EMAIL_ADDRESS = var.private_app_env_vars.SENDER_EMAIL_ADDRESS
+    EMAIL_ADDRESS = var.private_app_env_vars.EMAIL_ADDRESS
   }
+  iam_service_role_arn = aws_iam_role.amplify_role.arn
 }
 
 resource "aws_amplify_branch" "main" {
   app_id      = aws_amplify_app.my_amplify_app.id
-  branch_name = "main"
-  stage = "PRODUCTION"
+  branch_name = var.main_branch
+  stage = var.branch_stage
   framework = var.framework
   ttl = var.ttl
 }
@@ -74,8 +78,8 @@ resource "aws_amplify_domain_association" "personal_site_domain" {
   app_id      = aws_amplify_app.my_amplify_app.id
   domain_name = aws_route53_zone.personal_site_zone.name
   sub_domain {
-    branch_name = "main"
-    prefix = ""
+    branch_name = var.main_branch
+    prefix = var.main_branch_prefix
   }
 }
 
