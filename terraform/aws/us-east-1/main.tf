@@ -32,6 +32,7 @@ resource "aws_amplify_app" "my_amplify_app" {
                     - npm ci --cache .npm --prefer-offline
                 build:
                   commands:
+                    - env | grep -e REGION_AWS -e SENDER_EMAIL_ADDRESS -e EMAIL_ADDRESS >> .env.production
                     - env | grep -e NEXT_PUBLIC_ >> .env.production
                     - npm run build
               artifacts:
