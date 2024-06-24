@@ -28,6 +28,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         };
 
         // Send email
+        // @ts-ignore
         await ses.sendEmail(params).promise();
 
         return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
