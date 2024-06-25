@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { SES, EnvironmentCredentials } from 'aws-sdk';
+import { SES, Config } from 'aws-sdk';
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
-    const credentials = new EnvironmentCredentials('AWS');
-    const ses = new SES({region: process.env.REGION_AWS, credentials: credentials});
+    const config = new Config({
+        region: process.env.REGION_AWS,
+    });
+    const ses = new SES({region: process.env.REGION_AWS, credentials: config.credentials});
 
     try {
         const { name, email, message } = await request.json();
@@ -38,6 +40,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     } catch (error) {
         console.log('Error sending email:', (error as Error).message);
         console.log(ses.config);
-        return NextResponse.json({ error: 'Error sending email', details: (error as Error).message, credent:credentials }, { status: 500 });
+        return NextResponse.json({ error: 'Error sending email', details: (error as Error).message, credentials:config }, { status: 500 });
     }
 }
