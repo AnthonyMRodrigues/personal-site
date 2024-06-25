@@ -40,6 +40,6 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     } catch (error) {
         console.log('Error sending email:', (error as Error).message);
         console.log(ses.config);
-        return NextResponse.json({ error: 'Error sending email', details: (error as Error).message, credentials:config }, { status: 500 });
+        return NextResponse.json({ error: 'Error sending email', details: (error as Error).message }, { status: 500 });
     }
 }
