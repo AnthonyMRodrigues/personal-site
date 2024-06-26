@@ -16,6 +16,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
+data "aws_caller_identity" "current" {}
+
 
 resource "aws_route53_zone" "personal_site_zone" {
   name = var.domain_name
@@ -33,6 +35,7 @@ resource "aws_amplify_app" "my_amplify_app" {
                 build:
                   commands:
                     - env | grep -e REGION_AWS -e SENDER_EMAIL_ADDRESS -e EMAIL_ADDRESS >> .env.production
+                    - env | grep -e SMTP_EMAIL_ADDRESS -e SMTP_EMAIL_PORT -e SMTP_EMAIL_USERNAME -e SMTP_EMAIL_PASSWORD >> .env.production
                     - env | grep -e NEXT_PUBLIC_ >> .env.production
                     - npm run build
               artifacts:
@@ -62,6 +65,11 @@ resource "aws_amplify_app" "my_amplify_app" {
     REGION_AWS = var.private_app_env_vars.AWS_REGION
     SENDER_EMAIL_ADDRESS = var.private_app_env_vars.SENDER_EMAIL_ADDRESS
     EMAIL_ADDRESS = var.private_app_env_vars.EMAIL_ADDRESS
+    SMTP_EMAIL_ADDRESS = var.private_app_env_vars.SMTP_EMAIL_ADDRESS
+    SMTP_EMAIL_PORT = var.private_app_env_vars.SMTP_EMAIL_PORT
+    SMTP_EMAIL_USERNAME = aws_ssm_parameter.ses_user_access_key.value
+    SMTP_EMAIL_PASSWORD = aws_ssm_parameter.ses_user_secret_key.value
+
   }
   iam_service_role_arn = aws_iam_role.amplify_role.arn
 }
