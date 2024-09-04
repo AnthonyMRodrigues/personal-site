@@ -21,17 +21,15 @@ export default function Header() {
         }
     ];
     return (
-        <div className={"sticky top-0 z-50"}>
-            <div className={"grid grid-cols-3 grid-gap-1 bg-site-primary-color h-16"}>
-                <div className={"mt-1.5 ml-72"}>
+        <div className={"sticky top-0 z-50 grid grid-cols-2 bg-site-primary-color"}>
+                <div className={"grid-cols-subgrid pl-5 md:py-1"}>
                     <a href={"/"}>
-                        <Image src={"/logo.jpg"} alt={"Anthony Rodrigues"} width={50} height={50} fill={false}/>
+                        <Image src={"/logo.jpg"} alt={"Anthony Rodrigues"} width={60} height={50} fill={false}/>
                     </a>
                 </div>
-                <div className={"col-span-2 col-end-7 mr-72"}>
+                <div className={"grid-cols-subgrid justify-self-end"}>
                     <Menubar model={items} className={"bg-site-primary-color"}/>
                 </div>
-            </div>
         </div>
     );
 }
