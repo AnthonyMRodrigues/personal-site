@@ -21,19 +21,24 @@ export default function Header() {
                     </svg>
                 </Button>
                     <div className="w-full md:block md:w-auto pl-5" id="navbar-default" hidden={hiddenMenu}>
-                        <ul className="flex flex-col p-4 mt-2 border rounded-lg md:flex-row md:space-x-8 md:mt-0 dark:bg-gray-800 dark:border-gray-700">
+                        <ul className="flex flex-col p-4 mt-2 md:flex-row md:space-x-8 md:mt-0 ">
                             <li>
                                 <a href="/"
-                                   className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
-                                   aria-current="page">Home</a>
+                                   className="block py-2 px-3 text-white md:dark:hover:text-blue-500 rounded md:p-0">
+                                    Home
+                                </a>
                             </li>
                             <li>
                                 <a href="/about"
-                                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                                   className="block py-2 px-3 text-white md:dark:hover:text-blue-500 rounded md:p-0">
+                                    About
+                                </a>
                             </li>
                             <li>
                                 <a href="/contact"
-                                   className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
+                                   className="block py-2 px-3 text-white md:dark:hover:text-blue-500 rounded md:p-0">
+                                    Contact
+                                </a>
                             </li>
                         </ul>
                     </div>
