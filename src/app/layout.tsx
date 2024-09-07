@@ -32,7 +32,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montserrat.variable} ${lato.variable} font-montserrat`}>{children}</body>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Anthony Rodrigues - Your Data Engineer, Data Architect, Software engineer</title>
+    </head>
+    <body className={`${montserrat.variable} ${lato.variable} font-montserrat`}>{children}</body>
     </html>
   );
 }
