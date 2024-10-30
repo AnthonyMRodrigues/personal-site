@@ -13,7 +13,7 @@ export default function Home() {
         <HeroSection />
         {/*<MiniAbout />*/}
         {/*<Skills />*/}
-        <Footer />
+        {/*<Footer />*/}
     </>
   );
 }

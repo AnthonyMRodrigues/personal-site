@@ -16,7 +16,7 @@ const config: Config = {
         "contact-card": "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/pexels-luis-gomes-166706-546819.jpg')",
       },
       colors: {
-        'site-primary-color': '#223A59',
+        'site-primary-color': '#131617',
         'site-secondary-color': '#EDF0F5',
         'site-tertiary-color': '#FF9B42',
         'site-quaternary-color': '#E8EBED',
