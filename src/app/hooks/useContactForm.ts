@@ -1,48 +1,48 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const useContactForm = (onSuccess: () => void, onError: () => void) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
+interface Perfume {
+    id: number;
+    marca: string;
+    perfume: string;
+    tamanho: number;
+    tipo: string;
+    sexo: string;
+    preco_pix: number;
+    preco_cartao: number;
+}
+
+export const useS3Data = () => {
+    const [data, setData] = useState<Perfume[]>([]);
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
+    const fetchData = async () => {
         setLoading(true);
+        setError(null);
 
         try {
-            const response = await fetch('/api/send-email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ name, email, message }),
-            });
-
-            const data = await response.json();
-
+            const response = await fetch('/api/s3');
             if (!response.ok) {
-                throw new Error(data.error);
+                throw new Error('Failed to fetch data');
             }
-            setName('');
-            setEmail('');
-            setMessage('');
-            onSuccess();
-        } catch (error) {
-            onError();
+            const jsonData = await response.json();
+            setData(jsonData);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch data');
+            console.error('Error fetching data:', err);
         } finally {
             setLoading(false);
         }
     };
 
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     return {
-        name,
-        setName,
-        email,
-        setEmail,
-        message,
-        setMessage,
+        data,
         loading,
-        handleSubmit,
+        error,
+        refetch: fetchData,
     };
 };

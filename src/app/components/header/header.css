@@ -1,9 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer components {
-    .menu-item-black .p-menuitem-icon,.p-menuitem-text{
-        @apply text-black;
-    }
-}

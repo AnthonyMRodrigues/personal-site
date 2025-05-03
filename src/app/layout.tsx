@@ -25,18 +25,19 @@ export const metadata: Metadata = {
   description: "The data engineer that you are looking for.",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="font-la-orleans">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Anthony Rodrigues - Your Data Engineer, Data Architect, Software engineer</title>
     </head>
-    <body className={`${montserrat.variable} ${lato.variable} font-montserrat`}>{children}</body>
+    <body className={`${montserrat.variable} ${lato.variable} font-la-orleans bg-site-primary-color`}>{children}</body>
     </html>
   );
 }

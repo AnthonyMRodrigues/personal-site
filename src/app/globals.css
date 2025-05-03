@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'La Orleans';
+  src: url('/fonts/LaOrleans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'La Orleans', serif;
+  }
+}
+
+/* PrimeReact Overrides */
+.p-datatable .p-datatable-thead > tr > th,
+.p-datatable .p-datatable-tbody > tr > td,
+.p-datatable .p-datatable-tfoot > tr > td,
+.p-inputtext,
+.p-dropdown-label,
+.p-dropdown-item {
+  font-family: 'La Orleans', serif !important;
+  font-size: 1.2rem !important;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

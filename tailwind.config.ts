@@ -16,14 +16,9 @@ const config: Config = {
         "contact-card": "linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/pexels-luis-gomes-166706-546819.jpg')",
       },
       colors: {
-        'site-primary-color': '#223A59',
-        'site-secondary-color': '#EDF0F5',
-        'site-tertiary-color': '#FF9B42',
-        'site-quaternary-color': '#E8EBED',
-        'site-quinary-color': '#D6D9DC',
-        'contact-form-bg': '#FFFDFD',
-        'toast-success-email': '#CDEDCF',
-        'toast-error-email': '#FFE0B2',
+        'site-primary-color': '#002344',
+        'site-secondary-color': '#f1d0a4',
+        'secondary-yellow': '#f1d0a4',
       },
       margin: {
         100: "45rem",
@@ -39,6 +34,7 @@ const config: Config = {
       fontFamily: {
         montserrat: "var(--font-montserrat)",
         lato: "var(--font-lato)",
+        'la-orleans': ['La Orleans', 'serif'],
       },
       keyframes: {
         'fade-in': {
