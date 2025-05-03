@@ -230,7 +230,7 @@ export default function PerfumesTable() {
             `Preço no PIX: ${formatCurrency(rowData.preco_pix)}\n` +
             `Preço no Cartão: ${formatCurrency(rowData.preco_cartao)}`;
 
-        const whatsappUrl = `https://wa.me/+5521973796334?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/+5511961932013?text=${encodeURIComponent(message)}`;
 
         return (
             <Button 
