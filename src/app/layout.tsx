@@ -4,6 +4,7 @@ import "./globals.css";
 import "primereact/resources/themes/lara-dark-blue/theme.css";  //theme
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
+import WhatsAppButton from '@/components/WhatsAppButton'
 
 const montserrat = Montserrat(
     {
@@ -37,7 +38,10 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Anthony Rodrigues - Your Data Engineer, Data Architect, Software engineer</title>
     </head>
-    <body className={`${montserrat.variable} ${lato.variable} font-la-orleans bg-site-primary-color`}>{children}</body>
+    <body className={`${montserrat.variable} ${lato.variable} font-la-orleans bg-site-primary-color`}>
+      {children}
+      <WhatsAppButton />
+    </body>
     </html>
   );
 }

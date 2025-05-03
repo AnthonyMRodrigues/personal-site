@@ -1,6 +1,7 @@
 import Image from "next/image";
 import BrandIcon from "@/app/components/BrandIcon";
 import PerfumesTable from "@/app/components/table";
+import Footer from "@/app/components/footer/footer";
 
 export default function Home() {
   const brands = ['chanel', 'dior', 'gucci', 'carolina_herrera', 'versace', 'prada', 'burberry', 'hugo_boss'] as const;
@@ -65,6 +66,7 @@ export default function Home() {
         <section>
           <PerfumesTable />
         </section>
+        <Footer />
       </div>
     </main>
   );
