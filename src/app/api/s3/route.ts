@@ -1,10 +1,8 @@
 import { NextResponse } from 'next/server';
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
-import { fromIni } from '@aws-sdk/credential-provider-ini';
 
 const s3Client = new S3Client({
-    region: process.env.AWS_REGION || 'us-east-1',
-    credentials: fromIni({ profile: 'default' })
+    region: process.env.AWS_REGION || 'us-east-1'
 });
 
 export async function GET() {
