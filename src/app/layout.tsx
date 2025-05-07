@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import {Montserrat, Lato} from "next/font/google";
 import "./globals.css";
-import "primereact/resources/themes/lara-dark-blue/theme.css";  //theme
+// import "primereact/resources/themes/lara-dark-blue/theme.css";  //theme
+import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
 import WhatsAppButton from '@/components/WhatsAppButton'

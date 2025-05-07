@@ -8,47 +8,47 @@ export default function Home() {
   
   return (
     <main className="min-h-screen bg-site-primary-color">
-      <div className={"ml-10 mr-10"}>
-        <div className="flex justify-center">
+      <div>
+        <div className="flex justify-center ml-10 mr-10 mt-5">
             <Image
-              src="/images/miha-logo_new.jpg"
+              src="/images/miha-logo.jpg"
               alt="Miha Boutique de Perfumes"
-              width={700}
-              height={300}
+              width={200}
+              height={200}
               priority
             />
         </div>
 
         {/* Most Wanted Brands Section */}
-        <section className="mb-16">
-          <h2 className="text-site-secondary-color text-3xl font-semibold text-center mb-10 font-la-orleans">
+        <section>
+          <h2 className="text-site-secondary-color text-3xl font-semibold text-center font-la-orleans">
             Marcas mais procuradas
           </h2>
           <div className="flex flex-col gap-4">
-            {/* First Row */}
-            <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-2 justify-items-center md:mb-4">
-              {[...Array(8)].map((_, index) => (
+            {/* Desktop: 2 rows of 8 icons */}
+            <div className="hidden md:grid md:grid-cols-8 md:gap-2 justify-items-center">
+              {[...Array(16)].map((_, index) => (
                 <div
-                  key={`row1-${index}`}
-                  className="rounded-full flex items-center justify-center transition-colors p-1.5 w-16 h-16 md:w-full md:h-full"
+                  key={`desktop-${index}`}
+                  className="rounded-full flex items-center justify-center transition-colors p-1.5 w-full h-full"
                 >
                   <BrandIcon
                     brand={brands[index % brands.length]}
-                    className="w-12 h-12 md:w-full md:h-full text-site-primary-color"
+                    className="w-full h-full text-site-primary-color"
                   />
                 </div>
               ))}
             </div>
-            {/* Second Row */}
-            <div className="grid grid-cols-4 md:grid-cols-8 gap-4 md:gap-2 justify-items-center mb-4">
+            {/* Mobile: 1 row of 8 icons */}
+            <div className="grid grid-cols-8 gap-2 justify-items-center md:hidden">
               {[...Array(8)].map((_, index) => (
                 <div
-                  key={`row1-${index}`}
-                  className="rounded-full flex items-center justify-center transition-colors p-1.5 w-16 h-16 md:w-full md:h-full"
+                  key={`mobile-${index}`}
+                  className="rounded-full flex items-center justify-center transition-colors p-1.5 w-12 h-12"
                 >
                   <BrandIcon
                     brand={brands[index % brands.length]}
-                    className="w-12 h-12 md:w-full md:h-full text-site-primary-color"
+                    className="w-10 h-10 text-site-primary-color"
                   />
                 </div>
               ))}
@@ -57,7 +57,7 @@ export default function Home() {
         </section>
 
         {/* Find Your Perfume Section */}
-        <section className="mb-16">
+        <section className="mb-6">
           <h2 className="text-site-secondary-color text-3xl font-semibold text-center font-la-orleans">
             Encontre seu perfume
           </h2>
