@@ -1,6 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.p-datatable {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  font-family: 'Montserrat', sans-serif !important;
+  background: #002344 !important;
+  color: white !important;
+  font-weight: normal !important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  font-family: 'Montserrat', sans-serif !important;
+}
 
 .p-datatable-tbody tr{
   /* background: #f1d0a4 !important; */
@@ -18,15 +35,38 @@
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
-  border: 1px solid #002344 !important;
+  border: 0.7px solid #2B3712 !important;
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-  border: 1px solid #002344 !important;
+  border: 0.7px solid #2B3712 !important;
+  background: #002344 !important;
+  color: white !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th .p-column-title {
+  color: white !important;
+  font-weight: normal !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th .p-sortable-column-icon {
+  color: white !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th .p-column-filter-menu-button {
+  color: white !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th .p-column-filter-menu-button .p-button {
+  color: white !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th .p-column-filter-menu-button .p-button-icon {
+  color: white !important;
 }
 
 .p-datatable .p-datatable-tfoot > tr > td {
-  border: 1px solid #002344 !important;
+  border: 1px solid #f1d0a4 !important;
 }
 
 .p-datatable .p-datatable-wrapper {
@@ -48,7 +88,7 @@
 .p-datatable-header, .p-datatable-wrapper, .p-paginator {
   /* background: #f1d0a4 !important; */
   color: #002344 !important;
-  border: 1px solid #002344 !important;
+  border: 1px solid #f1d0a4 !important;
 }
 
 /* Filter styles */
@@ -58,6 +98,19 @@
   border: 1px solid #002344 !important;
   border-radius: 6px !important;
   padding: 0.5rem !important;
+}
+
+/* Filter button styles */
+.p-column-filter-overlay .p-button,
+.p-multiselect-panel .p-button {
+  color: #f1d0a4 !important;
+  border-color: #f1d0a4 !important;
+}
+
+.p-column-filter-overlay .p-button:hover,
+.p-multiselect-panel .p-button:hover {
+  background: #f1d0a4 !important;
+  color: #002344 !important;
 }
 
 /* Remove filter icon padding */
@@ -79,6 +132,7 @@
 /* Mobile table styles */
 .p-datatable {
   width: 100% !important;
+  background: #f1d0a4 !important;
 }
 
 .p-datatable-wrapper {
@@ -151,15 +205,81 @@
     width: 25% !important;
   }
 
-  .p-datatable .p-column-filter-menu-button {
+  .remove-filter-margin .p-column-filter-menu-button .p-button {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .remove-filter-margin .p-column-filter-menu-button .p-button-icon {
+    font-size: 1.2rem !important;
+  }
+
+  /* .p-datatable .p-column-filter-menu-button {
     display: none !important;
   }
 
   .p-datatable .p-column-filter {
     display: none !important;
-  }
+  } */
 }
 
 .p-column-filter {
   width: 25% !important;
 }
+
+.p-datatable-header {
+  padding: 0.5rem !important;
+  min-height: 2.5rem !important;
+  height: auto !important;
+  background: #f1d0a4 !important;
+}
+
+.p-datatable-header .p-inputtext {
+  height: 2rem !important;
+  padding: 0.25rem 0.5rem !important;
+}
+
+.p-datatable-header .p-input-icon {
+  display: flex !important;
+  align-items: center !important;
+  height: 60% !important;
+  right: 0.5rem !important;
+}
+
+/* .p-datatable-header .p-input-icon-right {
+  position: relative !important;
+} */
+
+.p-datatable-header .p-input-icon-right .p-inputtext {
+  padding-right: 2rem !important;
+} 
+
+@media screen and (max-width: 768px) {
+  .p-datatable-header {
+    padding: 0.25rem !important;
+    min-height: 2rem !important;
+  }
+
+  .p-datatable-header .p-inputtext {
+    height: 1.5rem !important;
+    padding: 0.15rem 0.35rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .p-datatable-header .p-input-icon {
+    font-size: 0.75rem !important;
+  }
+}
+
+.p-datatable .p-datatable-tbody > tr.p-row-odd {
+  background: #f1d0a4 !important;
+}
+
+.p-datatable .p-datatable-tbody > tr.p-row-even {
+  background: #f1d0a4 !important;
+}
+
+.break-word-col {
+  word-break: break-word !important;
+}
+

@@ -90,6 +90,10 @@ export default function PerfumesTable() {
         return Math.ceil(Math.max(...perfumes.map(p => p.tamanho)));
     }, [perfumes]);
 
+    const itemSize = useMemo(() => {
+        return perfumes?.length ? perfumes.length : 50;
+    }, [perfumes]);
+
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth <= 768);
@@ -241,14 +245,13 @@ export default function PerfumesTable() {
             `Gênero: ${rowData.sexo}\n` +
             `Preço no PIX: ${formatCurrency(rowData.preco_pix)}\n` +
             `Preço no Cartão: ${formatCurrency(rowData.preco_cartao)}`;
-
-        const whatsappUrl = `https://wa.me/+5511961932013?text=${encodeURIComponent(message)}`;
+        const whatsappUrl = `https://wa.me/+5511969058377?text=${encodeURIComponent(message)}`;
 
         return (
             <div className="flex justify-start">
                 <Button 
                     icon="pi pi-whatsapp" 
-                    className="p-button-rounded p-button-text p-button-md" 
+                    className="p-button-rounded p-button-text p-button-lg" 
                     onClick={() => window.open(whatsappUrl, '_blank')}
                     // style={{ padding: '0.25rem' }}
                 />
@@ -261,8 +264,8 @@ export default function PerfumesTable() {
             <InputText
                 value={options.value}
                 onChange={(e) => options.filterCallback(e.target.value)}
-                placeholder={options.field === 'marca' ? 'Buscar por marca' : 'Buscar por perfume'}
-                className="w-100  text-md"
+                placeholder={options.field === 'marca' ? 'BUSCAR POR MARCA' : 'BUSCAR POR PERFUME'}
+                className="w-100 text-md"
             />
         );
     };
@@ -270,20 +273,21 @@ export default function PerfumesTable() {
     const renderHeader = () => {
         return (
             <div className="flex justify-between items-center">
-                <div className="flex-1 flex justify-end">
-                    <IconField iconPosition="right" className="p-input-icon-right">
+                <div className="flex-1 flex justify-center">
+                    <IconField iconPosition="right" className="p-input-icon-right w-2/3">
                         <InputText 
                             value={globalFilterValue} 
                             onChange={onGlobalFilterChange} 
-                            placeholder="Buscar" 
-                            className="p-inputtext-lg w-full md:w-20rem bg-site-primary-color text-site-secondary-color placeholder:text-site-secondary-color"
+                            placeholder="BUSCAR" 
+                            className="p-inputtext-lg w-full bg-site-primary-color text-site-secondary-color placeholder:text-site-secondary-color"
                             style={{ 
-                                fontSize: 'clamp(0.60rem, 1vw, 1rem)', 
-                                padding: 'clamp(0.35rem, 1vw, 0.35rem)',
-                                height: 'clamp(1.5rem, 2vw, 1rem)'
+                                fontSize: '1.44rem',
+                                padding: '1.2rem',
+                                height: '4rem',
+                                width: '100%'
                             }}
                         />
-                        <InputIcon className="pi pi-search text-site-secondary-color" style={{ fontSize: 'clamp(0.75rem, 2vw, 1rem)' }} />
+                        <InputIcon className="pi pi-search text-site-secondary-color" style={{ fontSize: '1.8rem' }} />
                     </IconField>
                 </div>
             </div>
@@ -292,12 +296,11 @@ export default function PerfumesTable() {
 
     const header = renderHeader();
     return (
-        <div className="card">
+        <div className="card bg-[#f1d0a4] font-futura">
             <DataTable 
                 value={perfumes} 
-                paginator 
                 showGridlines 
-                rows={50} 
+                rows={itemSize} 
                 loading={loading} 
                 dataKey="id" 
                 filters={filters} 
@@ -310,77 +313,97 @@ export default function PerfumesTable() {
             >
                 <Column 
                     field="marca" 
-                    header="Marca" 
-                    filter={!isMobile}
+                    header="MARCA" 
+                    filter
                     sortable 
                     filterElement={textFilterTemplate}
                     showFilterMatchModes={false} 
                     style={{ width: '7%' }}
                     filterField="marca"
+                    align="center"
+                    // bodyClassName="break-word-col"
+                    headerClassName="bg-site-primary-color text-white"
                 />
                 <Column 
                     field="perfume" 
-                    header="Perfume" 
-                    filter={!isMobile}
+                    header="PERFUME" 
+                    filter
                     sortable 
                     filterPlaceholder="Buscar por perfume" 
                     showFilterMatchModes={false}
+                    filterElement={textFilterTemplate}
                     filterField="perfume"
-                    style={{ width: '7%' }}
+                    style={{ width: '8%' }}
+                    align="center"
+                    bodyClassName="break-word-col"
+                    headerClassName="bg-site-primary-color text-white"
                 />
                 <Column 
                     field="tamanho" 
-                    header="Tamanho" 
-                    filter={!isMobile}
+                    header="ML" 
+                    filter
                     sortable 
                     filterElement={sizeFilterTemplate} 
                     showFilterMatchModes={false} 
-                    body={tamanhoBodyTemplate}
-                    style={{ width: '6%' }}
+                    style={{ width: '4%' }}
+                    align="center"
+                    headerClassName="bg-site-primary-color text-white remove-filter-margin"
                 />
                 <Column 
                     field="tipo" 
-                    header="Tipo" 
-                    filter={!isMobile}
+                    header="TIPO" 
+                    filter
                     sortable 
                     filterElement={tipoFilterTemplate} 
                     showFilterMatchModes={false} 
-                    style={{ width: '4%' }}
+                    style={{ width: '5%' }}
+                    align="center"
+                    headerClassName="bg-site-primary-color text-white"
                 />
                 <Column 
                     field="sexo" 
-                    header="Sexo" 
-                    filter={!isMobile}
+                    header="SEXO" 
+                    filter
                     sortable 
                     filterElement={sexoFilterTemplate} 
                     showFilterMatchModes={false} 
                     style={{ width: '5%' }}
+                    align="center"
+                    headerClassName="bg-site-primary-color text-white"
                 />
                 <Column 
                     field="preco_pix" 
-                    header="Preço Pix" 
-                    filter={!isMobile}
+                    header="PREÇO PIX" 
+                    filter
                     sortable 
                     filterElement={priceFilterTemplate} 
                     showFilterMatchModes={false} 
                     body={precoPixBodyTemplate}
                     style={{ width: '6%' }}
+                    align="center"
+                    headerClassName="bg-site-primary-color text-white"
                 />
                 <Column 
                     field="preco_cartao" 
-                    header="Preço Até 12X" 
-                    filter={!isMobile}
+                    header="PREÇO ATÉ 12X" 
+                    filter
                     sortable 
                     filterElement={priceFilterTemplate} 
                     showFilterMatchModes={false} 
                     body={precoCartaoBodyTemplate}
                     style={{ width: '6%' }}
+                    align="center"
+                    headerClassName="bg-site-primary-color text-white"
                 />
-                <Column 
-                    header="Comprar" 
-                    body={whatsappBodyTemplate} 
-                    style={{ width: '6%'}} 
-                />
+                {!isMobile && (
+                    <Column 
+                        header="COMPRAR" 
+                        body={whatsappBodyTemplate} 
+                        style={{ width: '6%'}} 
+                        align="center"
+                        headerClassName="bg-site-primary-color text-white"
+                    />
+                )}
             </DataTable>
         </div>
     );

@@ -4,7 +4,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 
 const WhatsAppButton = () => {
   const handleClick = () => {
-    window.open('https://wa.me/+5511961932013?text=Olá, gostaria de saber mais sobre os perfumes.', '_blank');
+    window.open('https://wa.me/+5511969058377?text=Olá, gostaria de saber mais sobre os perfumes.', '_blank');
   };
 
   return (

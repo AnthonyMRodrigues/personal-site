@@ -32,6 +32,9 @@ const config: Config = {
         random: 'random'
       },
       fontFamily: {
+        sans: ['Cormorant Garamond', 'serif'],
+        cormorant: ['Cormorant Garamond', 'serif'],
+        futura: ['var(--font-futura)', 'sans-serif'],
         montserrat: "var(--font-montserrat)",
         lato: "var(--font-lato)",
         'la-orleans': ['La Orleans', 'serif'],

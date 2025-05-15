@@ -1,29 +1,45 @@
+'use client'
+
 import Image from "next/image";
 import BrandIcon from "@/app/components/BrandIcon";
 import PerfumesTable from "@/app/components/table";
 import Footer from "@/app/components/footer/footer";
+import { useEffect, useState } from "react";
 
 export default function Home() {
-  const brands = ['chanel', 'dior', 'gucci', 'carolina_herrera', 'versace', 'prada', 'burberry', 'hugo_boss'] as const;
+  const [imageSize, setImageSize] = useState(250);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setImageSize(window.innerWidth <= 768 ? 250 : 500);
+    };
+    
+    handleResize(); // Set initial size
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const brands = ['chanel', 'dior', 'gucci', 'carolina_herrera', 'calvin_klein', 'versace',
+    'yves_saint_laurent', 'giorgio_armani', 'prada', 'burberry', 'lancome', 'paco_rabanne',
+    'jean_paul_gaultier',  'hugo_boss', 'bvgari', 'tom_ford'
+  ] as const;
   
   return (
     <main className="min-h-screen bg-site-primary-color">
       <div>
-        <div className="flex justify-center ml-10 mr-10 mt-5">
+        <div className="flex justify-center ml-10 mr-10 mt-5 mb-8">
             <Image
               src="/images/miha-logo.jpg"
               alt="Miha Boutique de Perfumes"
-              width={200}
-              height={200}
+              width={imageSize}
+              height={imageSize}
               priority
             />
         </div>
 
         {/* Most Wanted Brands Section */}
-        <section>
-          <h2 className="text-site-secondary-color text-3xl font-semibold text-center font-la-orleans">
-            Marcas mais procuradas
-          </h2>
+        <section className="px-1 md:px-2 mb-5">
           <div className="flex flex-col gap-4">
             {/* Desktop: 2 rows of 8 icons */}
             <div className="hidden md:grid md:grid-cols-8 md:gap-2 justify-items-center">
@@ -39,16 +55,18 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            {/* Mobile: 1 row of 8 icons */}
-            <div className="grid grid-cols-8 gap-2 justify-items-center md:hidden">
-              {[...Array(8)].map((_, index) => (
+            {/* Mobile: 2 rows of 6 icons */}
+            <div className="grid grid-cols-7 gap-2 justify-items-center md:hidden">
+              {[...Array(14)].map((_, index) => (
                 <div
                   key={`mobile-${index}`}
-                  className="rounded-full flex items-center justify-center transition-colors p-1.5 w-12 h-12"
+                  className="flex items-center justify-center transition-colors"
                 >
                   <BrandIcon
                     brand={brands[index % brands.length]}
-                    className="w-10 h-10 text-site-primary-color"
+                    className={`text-site-primary-color ${
+                      index < 6 ? 'w-8 h-8' : 'w-12 h-12'
+                    }`}
                   />
                 </div>
               ))}
@@ -57,10 +75,13 @@ export default function Home() {
         </section>
 
         {/* Find Your Perfume Section */}
-        <section className="mb-6">
-          <h2 className="text-site-secondary-color text-3xl font-semibold text-center font-la-orleans">
-            Encontre seu perfume
-          </h2>
+        <section className="mb-8">
+          <h1 className="text-site-secondary-color font-black text-center md:text-4xl text-2xl">
+            CATÁLOGO DE PRODUTOS
+          </h1>
+          <p className="text-site-secondary-color text-center text-xs md:text-base">
+            FAÇA O SEU PEDIDO PELO NOSSO WHATSAPP
+          </p>
         </section>
 
         <section>
