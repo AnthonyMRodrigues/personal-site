@@ -240,7 +240,7 @@ export default function PerfumesTable() {
                     min={minPreco}
                     max={maxPreco}
                     step={10}
-                    onFocus={() => handleFilterOpen('slider')}
+                    // onFocus={() => handleFilterOpen('slider')}
                 />
                 <div className="flex justify-between w-full px-8">
                     <span className="text-site-secondary-color w-[120px]">{formatCurrency(options.value ? options.value[0] : minPreco)}</span>
@@ -260,7 +260,7 @@ export default function PerfumesTable() {
                     className="m-3"
                     min={minTamanho}
                     max={maxTamanho}
-                    onFocus={() => handleFilterOpen('slider')}
+                    // onFocus={() => handleFilterOpen('slider')}
                 />
                 <div className="flex justify-between w-full px-2">
                     <span className="text-site-secondary-color">{options.value ? options.value[0] : minTamanho} ml</span>
