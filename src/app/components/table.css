@@ -306,6 +306,17 @@
 .p-multiselect-panel .p-multiselect-items .p-multiselect-item {
     color: #f1d0a4 !important;
 }
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item.p-highlight {
+    background: #002344 !important;
+    color: #f1d0a4 !important;
+}
+
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item:hover {
+    background: #002344 !important;
+    color: #f1d0a4 !important;
+}
+
 .p-placeholder {
-  color: #f1d0a4 !important;
+    color: #f1d0a4 !important;
 }

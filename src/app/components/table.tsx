@@ -115,14 +115,15 @@ export default function PerfumesTable() {
     }, []);
 
     useEffect(() => {
-        if (initialLoad && tipos.length > 0) {
+        if (initialLoad && tipos.length > 0 && sexos.length > 0) {
             setFilters(prevFilters => ({
                 ...prevFilters,
-                tipo: { value: tipos, matchMode: FilterMatchMode.IN }
+                tipo: { value: tipos, matchMode: FilterMatchMode.IN },
+                sexo: { value: sexos, matchMode: FilterMatchMode.IN }
             }));
             setInitialLoad(false);
         }
-    }, [tipos, initialLoad]);
+    }, [tipos, sexos, initialLoad]);
 
     const formatCurrency = (value: number) => {
         return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -214,6 +215,7 @@ export default function PerfumesTable() {
                     className="w-full text-site-secondary-color"
                     showClear
                     // onShow={() => handleFilterOpen('multiselect')}
+                    panelClassName="text-site-secondary-color"
                 />
             </React.Fragment>
         );
