@@ -12,7 +12,7 @@ import { Slider, SliderChangeEvent } from 'primereact/slider';
 import { useS3Data } from '../hooks/useContactForm';
 import './table.css';
 
-import { locale, addLocale, updateLocaleOption, updateLocaleOptions, localeOption, localeOptions } from 'primereact/api';
+import { locale, addLocale } from 'primereact/api';
 
 addLocale('pt', {
     firstDayOfWeek: 1,
@@ -56,6 +56,7 @@ export default function PerfumesTable() {
     const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
     const [globalFilterValue, setGlobalFilterValue] = useState<string>('');
     const [isMobile, setIsMobile] = useState(false);
+    const [initialLoad, setInitialLoad] = useState(true);
     
     // Get unique values from perfumes data
     const sexos = useMemo(() => {
@@ -68,21 +69,24 @@ export default function PerfumesTable() {
         return Array.from(new Set(perfumes.map(p => p.tipo))).sort();
     }, [perfumes]);
 
-    const maxPreco = useMemo(() => {
+    const maxPrecoCartao = useMemo(() => {
         if (!perfumes) return 1000;
-        const maxValue = Math.max(...perfumes.map(p => p.preco_cartao));
-        
-        // Round up to the nearest:
-        // - 50 if less than 1000
-        // - 100 if less than 5000
-        // - 500 if greater than 5000
-        if (maxValue <= 1000) {
-            return Math.ceil(maxValue / 50) * 50;
-        } else if (maxValue <= 5000) {
-            return Math.ceil(maxValue / 100) * 100;
-        } else {
-            return Math.ceil(maxValue / 500) * 500;
-        }
+        return Math.max(...perfumes.map(p => p.preco_cartao));
+    }, [perfumes]);
+
+    const minPrecoCartao = useMemo(() => {
+        if (!perfumes) return 0;
+        return Math.min(...perfumes.map(p => p.preco_cartao));
+    }, [perfumes]);
+
+    const maxPrecoPix = useMemo(() => {
+        if (!perfumes) return 1000;
+        return Math.max(...perfumes.map(p => p.preco_pix));
+    }, [perfumes]);
+
+    const minPrecoPix = useMemo(() => {
+        if (!perfumes) return 0;
+        return Math.min(...perfumes.map(p => p.preco_pix));
     }, [perfumes]);
 
     const maxTamanho = useMemo(() => {
@@ -90,8 +94,9 @@ export default function PerfumesTable() {
         return Math.ceil(Math.max(...perfumes.map(p => p.tamanho)));
     }, [perfumes]);
 
-    const itemSize = useMemo(() => {
-        return perfumes?.length ? perfumes.length : 50;
+    const minTamanho = useMemo(() => {
+        if (!perfumes) return 0;
+        return Math.ceil(Math.min(...perfumes.map(p => p.tamanho)));
     }, [perfumes]);
 
     useEffect(() => {
@@ -109,25 +114,18 @@ export default function PerfumesTable() {
         initFilters();
     }, []);
 
-    const getPerfumes = (data: Perfume[]) => {
-        return [...(data || [])].map((d) => {
-            // @ts-ignore
-            d.date = new Date(d.date);
-
-            return d;
-        });
-    };
-
-    const formatDate = (value: Date) => {
-        return value.toLocaleDateString('en-US', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric'
-        });
-    };
+    useEffect(() => {
+        if (initialLoad && tipos.length > 0) {
+            setFilters(prevFilters => ({
+                ...prevFilters,
+                tipo: { value: tipos, matchMode: FilterMatchMode.IN }
+            }));
+            setInitialLoad(false);
+        }
+    }, [tipos, initialLoad]);
 
     const formatCurrency = (value: number) => {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'BRL' });
+        return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
 
     const clearFilter = () => {
@@ -150,19 +148,56 @@ export default function PerfumesTable() {
         setGlobalFilterValue('');
     };
 
+    const handleFilterOpen = (filterType: string) => {
+        setTimeout(() => {
+            const filterElement = document.querySelector(filterType === 'multiselect' ? '.p-multiselect-panel' : '.p-column-filter-overlay');
+            const filterButton = document.querySelector('.p-column-filter-menu-button');
+            
+            if (filterElement && filterButton) {
+                const buttonRect = filterButton.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const spaceAbove = buttonRect.top;
+                const spaceBelow = viewportHeight - buttonRect.bottom;
+                const filterHeight = 300; // Approximate filter height
+
+                // If there's more space above than below, or not enough space below
+                if (spaceAbove > spaceBelow || spaceBelow < filterHeight) {
+                    const scrollAmount = buttonRect.top - 100; // Position 100px from top
+                    window.scrollBy({
+                        top: scrollAmount,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }, 100);
+    };
+
+    const textFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
+        return (
+            <React.Fragment>
+                <InputText
+                    value={options.value}
+                    onChange={(e) => options.filterCallback(e.target.value)}
+                    placeholder={options.field === 'marca' ? 'BUSCAR POR MARCA' : 'BUSCAR POR PERFUME'}
+                    className="w-100 text-md"
+                    // onFocus={() => handleFilterOpen('text')}
+                />
+            </React.Fragment>
+        );
+    };
 
     const tipoFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
         return (
             <React.Fragment>
                 <MultiSelect 
-                    value={options.value} 
+                    value={options.value || tipos} 
                     options={tipos} 
                     onChange={(e) => options.filterCallback(e.value)}
                     placeholder="Todos" 
-                    className="p-column-filter"
-                    display="chip"
+                    className="w-full text-site-secondary-color"
                     showClear
-                    filter
+                    // onShow={() => handleFilterOpen('multiselect')}
+                    panelClassName="text-site-secondary-color"
                 />
             </React.Fragment>
         );
@@ -176,10 +211,9 @@ export default function PerfumesTable() {
                     options={sexos} 
                     onChange={(e) => options.filterCallback(e.value)}
                     placeholder="Todos" 
-                    className="p-column-filter"
-                    display="chip"
+                    className="w-full text-site-secondary-color"
                     showClear
-                    filter
+                    // onShow={() => handleFilterOpen('multiselect')}
                 />
             </React.Fragment>
         );
@@ -193,11 +227,9 @@ export default function PerfumesTable() {
         return formatCurrency(rowData.preco_cartao);
     };
 
-    const tamanhoBodyTemplate = (rowData: Perfume) => {
-        return rowData.tamanho + ' ml';
-    };
-
     const priceFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
+        const maxPreco = options.field === 'preco_cartao' ? maxPrecoCartao : maxPrecoPix;
+        const minPreco = options.field === 'preco_cartao' ? minPrecoCartao : minPrecoPix;
         return (
             <React.Fragment>
                 <Slider 
@@ -205,12 +237,13 @@ export default function PerfumesTable() {
                     onChange={(e: SliderChangeEvent) => options.filterCallback(e.value)} 
                     range 
                     className="m-3"
-                    min={0}
+                    min={minPreco}
                     max={maxPreco}
                     step={10}
+                    onFocus={() => handleFilterOpen('slider')}
                 />
                 <div className="flex justify-between w-full px-8">
-                    <span className="text-site-secondary-color w-[120px]">{formatCurrency(options.value ? options.value[0] : 0)}</span>
+                    <span className="text-site-secondary-color w-[120px]">{formatCurrency(options.value ? options.value[0] : minPreco)}</span>
                     <span className="text-site-secondary-color w-[120px] text-right">{formatCurrency(options.value ? options.value[1] : maxPreco)}</span>
                 </div>
             </React.Fragment>
@@ -225,11 +258,12 @@ export default function PerfumesTable() {
                     onChange={(e: SliderChangeEvent) => options.filterCallback(e.value)} 
                     range 
                     className="m-3"
-                    min={0}
+                    min={minTamanho}
                     max={maxTamanho}
+                    onFocus={() => handleFilterOpen('slider')}
                 />
                 <div className="flex justify-between w-full px-2">
-                    <span className="text-site-secondary-color">{options.value ? options.value[0] : 0} ml</span>
+                    <span className="text-site-secondary-color">{options.value ? options.value[0] : minTamanho} ml</span>
                     <span className="text-site-secondary-color">{options.value ? options.value[1] : maxTamanho} ml</span>
                 </div>
             </React.Fragment>
@@ -248,25 +282,13 @@ export default function PerfumesTable() {
         const whatsappUrl = `https://wa.me/+5511969058377?text=${encodeURIComponent(message)}`;
 
         return (
-            <div className="flex justify-start">
+            <div className="flex justify-center">
                 <Button 
                     icon="pi pi-whatsapp" 
                     className="p-button-rounded p-button-text p-button-lg" 
                     onClick={() => window.open(whatsappUrl, '_blank')}
-                    // style={{ padding: '0.25rem' }}
                 />
             </div>
-        );
-    };
-
-    const textFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
-        return (
-            <InputText
-                value={options.value}
-                onChange={(e) => options.filterCallback(e.target.value)}
-                placeholder={options.field === 'marca' ? 'BUSCAR POR MARCA' : 'BUSCAR POR PERFUME'}
-                className="w-100 text-md"
-            />
         );
     };
 
@@ -300,7 +322,8 @@ export default function PerfumesTable() {
             <DataTable 
                 value={perfumes} 
                 showGridlines 
-                rows={itemSize} 
+                rows={50} 
+                paginator 
                 loading={loading} 
                 dataKey="id" 
                 filters={filters} 

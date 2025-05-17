@@ -8,22 +8,22 @@ import Image from 'next/image';
 
 export default function BrandIcon({ brand, className = '' }: BrandIconProps) {
   const icons = {
-    chanel: <Image src="/svg_perfums/chanel-svgrepo-com-white.svg" alt="Chanel" width={150} height={150} />,
-    dior: <Image src="/svg_perfums/dior-svgrepo-com-white.svg" alt="Dior" width={150} height={150} />,
-    gucci: <Image src="/svg_perfums/gucci-4-white.svg" alt="Gucci" width={150} height={150} />,
-    carolina_herrera: <Image src="/svg_perfums/carolina-herrera-vector-logo-seeklogo/carolina-herrera-seeklogo-white.svg" alt="Carolina Herrera" width={150} height={150} />,
-    calvin_klein: <Image src="/svg_perfums/calvin-klein-1-white.svg" alt="Calvin Klein" width={150} height={150} />,
-    versace: <Image src="/svg_perfums/versace-medusa-2-logo-svgrepo-com (1)-white.svg" alt="Versace" width={150} height={150} />,
-    yves_saint_laurent: <Image src="/svg_perfums/yves-saint-laurent-1-white.svg" alt="Yves Saint Laurent" width={150} height={150} />,
-    giorgio_armani: <Image src="/svg_perfums/giorgio-armani-white.svg" alt="Giorgio Armani" width={150} height={150} />,
-    prada: <Image src="/svg_perfums/prada-logo-svgrepo-com (1)-white.svg" alt="Prada" width={150} height={150} />,
-    burberry: <Image src="/svg_perfums/burberry-3-logo-svgrepo-com (1)-white.svg" alt="Burberry" width={150} height={150} />,
-    lancome: <Image src="/svg_perfums/lancome-3-white.svg" alt="Lancôme" width={150} height={150} />,
-    hugo_boss: <Image src="/svg_perfums/boss-hugo-boss-logo-svgrepo-com-white.svg" alt="Hugo Boss" width={150} height={150} />,
-    paco_rabanne: <Image src="/svg_perfums/paco-rabanne-white.svg" alt="Paco Rabanne" width={150} height={150} />,
-    jean_paul_gaultier: <Image src="/svg_perfums/jean-paul-gaultier-white.svg" alt="Jean Paul Gaultier" width={150} height={150} />,
-    bvgari: <Image src="/svg_perfums/bvlgari-white.svg" alt="Bvlgari" width={150} height={150} />,
-    tom_ford: <Image src="/svg_perfums/tom-ford-vector-logo-seeklogo/tom-ford-seeklogo-white.svg" alt="Tom Ford" width={150} height={150} />,
+    chanel: <Image src="/svg_perfums/chanel-svgrepo-com-white.svg" alt="Chanel" width={100} height={100} />,
+    dior: <Image src="/svg_perfums/dior-svgrepo-com-white.svg" alt="Dior" width={100} height={100} />,
+    gucci: <Image src="/svg_perfums/gucci-4-white.svg" alt="Gucci" width={100} height={100} />,
+    carolina_herrera: <Image src="/svg_perfums/carolina-herrera-vector-logo-seeklogo/carolina-herrera-seeklogo-white.svg" alt="Carolina Herrera" width={100} height={100} />,
+    calvin_klein: <Image src="/svg_perfums/calvin-klein-1-white.svg" alt="Calvin Klein" width={100} height={100} />,
+    versace: <Image src="/svg_perfums/versace-medusa-2-logo-svgrepo-com (1)-white.svg" alt="Versace" width={100} height={100} />,
+    yves_saint_laurent: <Image src="/svg_perfums/yves-saint-laurent-1-white.svg" alt="Yves Saint Laurent" width={100} height={100} />,
+    giorgio_armani: <Image src="/svg_perfums/giorgio-armani-white.svg" alt="Giorgio Armani" width={100} height={100} />,
+    prada: <Image src="/svg_perfums/prada-logo-svgrepo-com (1)-white.svg" alt="Prada" width={100} height={100} />,
+    burberry: <Image src="/svg_perfums/burberry-3-logo-svgrepo-com (1)-white.svg" alt="Burberry" width={100} height={100} />,
+    lancome: <Image src="/svg_perfums/lancome-3-white.svg" alt="Lancôme" width={100} height={100} />,
+    hugo_boss: <Image src="/svg_perfums/boss-hugo-boss-logo-svgrepo-com-white.svg" alt="Hugo Boss" width={100} height={100} />,
+    paco_rabanne: <Image src="/svg_perfums/paco-rabanne-white.svg" alt="Paco Rabanne" width={100} height={100} />,
+    jean_paul_gaultier: <Image src="/svg_perfums/jean-paul-gaultier-white.svg" alt="Jean Paul Gaultier" width={100} height={100} />,
+    bvgari: <Image src="/svg_perfums/bvlgari-white.svg" alt="Bvlgari" width={100} height={100} />,
+    tom_ford: <Image src="/svg_perfums/tom-ford-vector-logo-seeklogo/tom-ford-seeklogo-white.svg" alt="Tom Ford" width={100} height={100} />,
   };
 
   return icons[brand];

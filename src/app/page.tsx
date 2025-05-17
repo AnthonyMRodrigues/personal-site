@@ -84,7 +84,7 @@ export default function Home() {
           </p>
         </section>
 
-        <section>
+        <section className="md:px-10">
           <PerfumesTable />
         </section>
         <Footer />
