@@ -386,7 +386,7 @@ export default function PerfumesTable() {
             <DataTable 
                 value={perfumes} 
                 showGridlines 
-                rows={perfumes.length} 
+                rows={100} 
                 paginator 
                 loading={loading} 
                 dataKey="id" 
