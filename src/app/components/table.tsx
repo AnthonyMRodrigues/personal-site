@@ -1,15 +1,17 @@
 'use client'
 import React, { useState, useEffect, useMemo } from 'react';
-import { FilterMatchMode, FilterOperator } from 'primereact/api';
+import { FilterMatchMode } from 'primereact/api';
 import { DataTable, DataTableFilterMeta } from 'primereact/datatable';
 import { Column, ColumnFilterElementTemplateOptions } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { IconField } from 'primereact/iconfield';
 import { InputIcon } from 'primereact/inputicon';
 import { Button } from 'primereact/button';
-import { MultiSelect, MultiSelectChangeEvent } from 'primereact/multiselect';
+import { ListBox } from 'primereact/listbox';
 import { Slider, SliderChangeEvent } from 'primereact/slider';
 import { useS3Data } from '../hooks/useContactForm';
+import { useDebounce } from 'primereact/hooks';
+
 import './table.css';
 
 import { locale, addLocale } from 'primereact/api';
@@ -21,10 +23,10 @@ addLocale('pt', {
     dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
     monthNames: ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
     monthNamesShort: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
-    today: 'Hoje',
-    clear: 'Limpar',
-    apply: 'Aplicar',
-    cancel: 'Cancelar'
+    today: 'HOJE',
+    clear: 'LIMPAR',
+    apply: 'APLICAR',
+    cancel: 'CANCELAR'
 });
 locale('pt');
 
@@ -50,13 +52,21 @@ const defaultFilters: DataTableFilterMeta = {
   preco_cartao: { value: null, matchMode: FilterMatchMode.BETWEEN },
 };
 
+
+
 export default function PerfumesTable() {
-    // const [perfumes, setPerfumes] = useState<Perfume[]>([]);
     const { data: perfumes, loading, error } = useS3Data();
     const [filters, setFilters] = useState<DataTableFilterMeta>(defaultFilters);
     const [globalFilterValue, setGlobalFilterValue] = useState<string>('');
     const [isMobile, setIsMobile] = useState(false);
     const [initialLoad, setInitialLoad] = useState(true);
+    
+    // For text filter debouncing
+    const [localFilterValues, setLocalFilterValues] = useState({});
+    const [debouncedFilterValues] = useDebounce(localFilterValues, 500);
+
+    // For tracking if filters are pending application
+    const [pendingFilters, setPendingFilters] = useState({});
     
     // Get unique values from perfumes data
     const sexos = useMemo(() => {
@@ -98,6 +108,23 @@ export default function PerfumesTable() {
         if (!perfumes) return 0;
         return Math.ceil(Math.min(...perfumes.map(p => p.tamanho)));
     }, [perfumes]);
+
+    useEffect(() => {
+        // Only update actual filters when debounced values change
+        if (Object.keys(debouncedFilterValues).length > 0) {
+          const newFilters = { ...filters };
+          
+          Object.entries(debouncedFilterValues).forEach(([field, value]) => {
+            if (newFilters[field]) {
+              // @ts-ignore
+              newFilters[field].value = value;
+            }
+          });
+          
+          setFilters(newFilters);
+        }
+      }, [debouncedFilterValues]);
+      
 
     useEffect(() => {
         const checkMobile = () => {
@@ -174,48 +201,82 @@ export default function PerfumesTable() {
     };
 
     const textFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
+        console.log('textFilterTemplate', options);
+        const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+            // For iOS devices
+            if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+              setTimeout(() => {
+                // Get the position of the input field
+                const rect = event.target.getBoundingClientRect();
+                const elementTop = rect.top + window.scrollY;
+                
+                // Scroll to position the input field in the upper portion of the screen
+                window.scrollTo({
+                  top: elementTop - 200,
+                  behavior: 'smooth'
+                });
+              }, 300); // Delay to wait for keyboard to appear
+            }
+          };
+
         return (
-            <React.Fragment>
                 <InputText
-                    value={options.value}
+                    value={options.value || ''}
                     onChange={(e) => options.filterCallback(e.target.value)}
-                    placeholder={options.field === 'marca' ? 'BUSCAR POR MARCA' : 'BUSCAR POR PERFUME'}
-                    className="w-100 text-md"
-                    // onFocus={() => handleFilterOpen('text')}
+                    placeholder={`BUSCAR POR ${options.field.toUpperCase()}`}
+                    className="w-100 text-md text-center [&::placeholder]:text-sm"
+                    onFocus={handleFocus}
                 />
-            </React.Fragment>
         );
     };
+      
 
     const tipoFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
+        const itemTemplate = (option: string) => {
+            const isSelected = options.value ? options.value.includes(option) : true;
+            return (
+                <div className={`flex items-center px-2 h-8 ${isSelected ? 'bg-site-primary-color text-white rounded' : ''}`}>
+                    {isSelected && <i className="pi pi-check mr-2"></i>}
+                    <span className="flex-1 text-center">{option}</span>
+                </div>
+            );
+        };
+        const value = options.value || tipos;
         return (
             <React.Fragment>
-                <MultiSelect 
-                    value={options.value || tipos} 
+                <ListBox 
+                    value={value} 
                     options={tipos} 
                     onChange={(e) => options.filterCallback(e.value)}
-                    placeholder="Todos" 
                     className="w-full text-site-secondary-color"
-                    showClear
-                    // onShow={() => handleFilterOpen('multiselect')}
-                    panelClassName="text-site-secondary-color"
+                    multiple
+                    itemTemplate={itemTemplate}
+                    listClassName="p-0 [&>li]:py-0"
                 />
             </React.Fragment>
         );
     };
 
     const sexoFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
+        const itemTemplate = (option: string) => {
+            const isSelected = options.value ? options.value.includes(option) : true;
+            return (
+                <div className={`flex items-center px-2 h-8 ${isSelected ? 'bg-site-primary-color text-white rounded' : ''}`}>
+                    {isSelected && <i className="pi pi-check mr-2"></i>}
+                    <span className="flex-1 text-center">{option}</span>
+                </div>
+            );
+        };
+        const value = options.value || sexos;
         return (
             <React.Fragment>
-                <MultiSelect 
-                    value={options.value} 
+                <ListBox 
+                    value={value} 
                     options={sexos} 
                     onChange={(e) => options.filterCallback(e.value)}
-                    placeholder="Todos" 
                     className="w-full text-site-secondary-color"
-                    showClear
-                    // onShow={() => handleFilterOpen('multiselect')}
-                    panelClassName="text-site-secondary-color"
+                    multiple
+                    itemTemplate={itemTemplate}
                 />
             </React.Fragment>
         );
@@ -244,9 +305,9 @@ export default function PerfumesTable() {
                     step={10}
                     // onFocus={() => handleFilterOpen('slider')}
                 />
-                <div className="flex justify-between w-full px-8">
+                <div className="flex justify-between w-full">
                     <span className="text-site-secondary-color w-[120px]">{formatCurrency(options.value ? options.value[0] : minPreco)}</span>
-                    <span className="text-site-secondary-color w-[120px] text-right">{formatCurrency(options.value ? options.value[1] : maxPreco)}</span>
+                    <span className="text-site-secondary-color w-[120px]">{formatCurrency(options.value ? options.value[1] : maxPreco)}</span>
                 </div>
             </React.Fragment>
         );
@@ -262,6 +323,7 @@ export default function PerfumesTable() {
                     className="m-3"
                     min={minTamanho}
                     max={maxTamanho}
+                    step={20}
                     // onFocus={() => handleFilterOpen('slider')}
                 />
                 <div className="flex justify-between w-full px-2">
@@ -331,10 +393,17 @@ export default function PerfumesTable() {
                 filters={filters} 
                 globalFilterFields={['marca', 'perfume', 'tamanho', 'tipo', 'sexo', 'preco_pix', 'preco_cartao']} 
                 header={header}
-                emptyMessage="Nenhum perfume encontrado." 
+                emptyMessage="NENHUM PERFUME ENCONTRADO." 
                 onFilter={(e) => setFilters(e.filters)}
                 removableSort
                 stripedRows
+                filterDisplay="menu"
+                // filterIcon={(options) => {
+                    
+                //     const isFilterActive = options.value && options.value.length !== tipos.length;
+                //     console.log('isFilterActive', isFilterActive);
+                //     return <i className={`pi ${isFilterActive ? 'pi-filter-fill' : 'pi-filter'}`}></i>;
+                // }}
             >
                 <Column 
                     field="marca" 
