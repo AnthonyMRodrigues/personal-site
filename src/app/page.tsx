@@ -30,8 +30,7 @@ export default function Home() {
   ] as const;
   
   return (
-    <main className="min-h-screen bg-site-primary-color">
-      <div>
+    <main className="bg-site-primary-color">
         <div className="flex justify-center ml-10 mr-10 mt-5 mb-8">
             <Image
               src="/images/miha-logo.jpg"
@@ -92,7 +91,6 @@ export default function Home() {
           <PerfumesTable />
         </section>
         <Footer />
-      </div>
     </main>
   );
 }

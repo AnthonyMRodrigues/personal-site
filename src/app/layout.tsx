@@ -6,6 +6,7 @@ import "primereact/resources/themes/lara-light-blue/theme.css";
 import "primereact/resources/primereact.min.css";                  //core css
 import "primeicons/primeicons.css";                                //icons
 import WhatsAppButton from '@/components/WhatsAppButton'
+import Script from 'next/script'
 
 const montserrat = Montserrat(
     {
@@ -51,8 +52,20 @@ export default function RootLayout({
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Miha perfumes</title>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ND24C6D423');
+          `}
+        </Script>
     </head>
-    <body className={`${montserrat.variable} ${lato.variable} ${cormorant.className} ${futura.variable} bg-site-primary-color`}>
+    <body className={`${montserrat.variable} ${lato.variable} ${cormorant.className} ${futura.variable} bg-site-primary-color min-h-screen`}>
       {children}
       <WhatsAppButton />
     </body>
