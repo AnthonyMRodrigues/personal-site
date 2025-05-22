@@ -109,7 +109,7 @@ export default function Home() {
           data-pr-position="right"
           data-pr-at="right+20 top"
           data-pr-my="left center-2"
-          style={{ fontSize: '0.85rem' }}
+          style={{ fontSize: '0.85rem', color: '#f1d0a4' }}
       >
       </i>
     </div>
