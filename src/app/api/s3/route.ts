@@ -10,7 +10,7 @@ const s3Client = new S3Client({
 
 export async function GET() {
     const bucket = process.env.AWS_BUCKET_NAME || 'miha-site-luccas';
-    console.log('GET request received', bucket);
+    console.log('GET request received', bucket, s3Client);
     try {
         console.log('Fetching data from S3');
         const command = new GetObjectCommand({
