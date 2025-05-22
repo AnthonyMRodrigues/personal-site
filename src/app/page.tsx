@@ -7,6 +7,9 @@ import Footer from "@/app/components/footer/footer";
 import { useEffect, useState } from "react";
 import { Tooltip } from 'primereact/tooltip';
 
+// Force dynamic page - prevents static generation
+export const dynamic = 'force-dynamic';
+
 export default function Home() {
   const [imageSize, setImageSize] = useState(250);
   const [isMobile, setIsMobile] = useState(false);
