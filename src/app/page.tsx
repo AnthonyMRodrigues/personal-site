@@ -89,33 +89,6 @@ export default function Home() {
         </section>
 
         <section className="md:px-10 relative">
-        {isMobile && (
-  <>
-    <div className="w-full flex justify-end mb-2 px-4">
-      <Tooltip 
-        target=".custom-target-icon" 
-        position="right"
-        style={{ 
-          fontSize: '0.7rem',
-          padding: '0.25rem 0.5rem',
-          whiteSpace: 'nowrap !important',
-          maxWidth: 'none !important'
-        }}
-        autoHide={true}
-      />
-      {/* @ts-ignore */}
-      <i className="custom-target-icon pi pi-info-circle p-text-secondary p-overlay-badge text-xs"
-          data-pr-tooltip="CLIQUE NO NOME DA COLUNA PARA ORDENAR"
-          data-pr-position="right"
-          data-pr-at="right+20 top"
-          data-pr-my="left center-2"
-          style={{ fontSize: '0.85rem', color: '#f1d0a4' }}
-      >
-      </i>
-    </div>
-  </>
-)}
-
           <PerfumesTable />
         </section>
         <Footer />

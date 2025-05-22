@@ -95,20 +95,14 @@ export default function PerfumesTable() {
         return Math.max(...perfumes.map(p => p.preco_pix));
     }, [perfumes]);
 
-    const minPrecoPix = useMemo(() => {
-        if (!perfumes) return 0;
-        return Math.min(...perfumes.map(p => p.preco_pix));
-    }, [perfumes]);
+    const minPrecoPix = 100;
 
     const maxTamanho = useMemo(() => {
         if (!perfumes) return 1000;
         return Math.ceil(Math.max(...perfumes.map(p => p.tamanho)));
     }, [perfumes]);
 
-    const minTamanho = useMemo(() => {
-        if (!perfumes) return 0;
-        return Math.ceil(Math.min(...perfumes.map(p => p.tamanho)));
-    }, [perfumes]);
+    const minTamanho = 0;
 
     useEffect(() => {
         // Only update actual filters when debounced values change
@@ -311,7 +305,7 @@ export default function PerfumesTable() {
 
     const priceFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
         const maxPreco = options.field === 'preco_cartao' ? maxPrecoCartao : maxPrecoPix;
-        const minPreco = options.field === 'preco_cartao' ? minPrecoCartao : minPrecoPix;
+        const minPreco = 100;
         return (
             <React.Fragment>
                 <Slider 
@@ -321,8 +315,7 @@ export default function PerfumesTable() {
                     className="m-3"
                     min={minPreco}
                     max={maxPreco}
-                    step={10}
-                    // onFocus={() => handleFilterOpen('slider')}
+                    step={100}
                 />
                 <div className="flex justify-between w-full">
                     <span className="text-site-secondary-color w-[120px]">{formatCurrency(options.value ? options.value[0] : minPreco)}</span>
@@ -343,7 +336,6 @@ export default function PerfumesTable() {
                     min={minTamanho}
                     max={maxTamanho}
                     step={20}
-                    // onFocus={() => handleFilterOpen('slider')}
                 />
                 <div className="flex justify-between w-full px-2">
                     <span className="text-site-secondary-color">{options.value ? options.value[0] : minTamanho} ml</span>
