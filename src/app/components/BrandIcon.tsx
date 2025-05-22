@@ -3,17 +3,18 @@ interface BrandIconProps {
   'giorgio_armani' | 'prada' | 'burberry'|  'lancome' | 'paco_rabanne' | 'jean_paul_gaultier' |
   'hugo_boss' | 'bvgari' | 'tom_ford';
   className?: string;
+  isMobile: boolean;
 }
 import Image from 'next/image';
 
-export default function BrandIcon({ brand, className = '' }: BrandIconProps) {
+export default function BrandIcon({ brand, className = '' , isMobile = false}: BrandIconProps) {
   const icons = {
-    chanel: <Image src="/svg_perfums/chanel-svgrepo-com-white.svg" alt="Chanel" width={100} height={100} />,
-    dior: <Image src="/svg_perfums/dior-svgrepo-com-white.svg" alt="Dior" width={100} height={100} />,
-    gucci: <Image src="/svg_perfums/gucci-4-white.svg" alt="Gucci" width={100} height={100} />,
+    chanel: <Image src="/svg_perfums/chanel-svgrepo-com-white.svg" alt="Chanel" width={isMobile ? 40 : 70} height={isMobile ? 40 : 70} />,
+    dior: <Image src="/svg_perfums/dior-svgrepo-com-white.svg" alt="Dior" width={isMobile ? 40 : 70} height={isMobile ? 40 : 70} />,
+    gucci: <Image src="/svg_perfums/gucci-4-white.svg" alt="Gucci" width={isMobile ? 40 : 70} height={isMobile ? 20 : 30} />,
     carolina_herrera: <Image src="/svg_perfums/carolina-herrera-vector-logo-seeklogo/carolina-herrera-seeklogo-white.svg" alt="Carolina Herrera" width={100} height={100} />,
     calvin_klein: <Image src="/svg_perfums/calvin-klein-1-white.svg" alt="Calvin Klein" width={100} height={100} />,
-    versace: <Image src="/svg_perfums/versace-medusa-2-logo-svgrepo-com (1)-white.svg" alt="Versace" width={100} height={100} />,
+    versace: <Image src="/svg_perfums/versace-medusa-2-logo-svgrepo-com (1)-white.svg" alt="Versace" width={isMobile ? 40 : 70} height={isMobile ? 40 : 70} />,
     yves_saint_laurent: <Image src="/svg_perfums/yves-saint-laurent-1-white.svg" alt="Yves Saint Laurent" width={100} height={100} />,
     giorgio_armani: <Image src="/svg_perfums/giorgio-armani-white.svg" alt="Giorgio Armani" width={100} height={100} />,
     prada: <Image src="/svg_perfums/prada-logo-svgrepo-com (1)-white.svg" alt="Prada" width={100} height={100} />,

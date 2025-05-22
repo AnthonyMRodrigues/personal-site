@@ -205,7 +205,7 @@
   }
 
   .p-column-filter {
-    width: 25% !important;
+    width: 0.7rem !important;
   }
 
   .remove-filter-margin .p-column-filter-menu-button .p-button {
@@ -216,14 +216,6 @@
   .remove-filter-margin .p-column-filter-menu-button .p-button-icon {
     font-size: 1.2rem !important;
   }
-
-  /* .p-datatable .p-column-filter-menu-button {
-    display: none !important;
-  }
-
-  .p-datatable .p-column-filter {
-    display: none !important;
-  } */
 
   .p-column-filter-overlay,
   .p-multiselect-panel {
@@ -245,10 +237,6 @@
     background: rgba(0, 0, 0, 0.4) !important;
     z-index: -1 !important;
   }
-}
-
-.p-column-filter {
-  width: 25% !important;
 }
 
 .p-datatable-header {
@@ -338,42 +326,10 @@ html, body {
   -webkit-overflow-scrolling: touch;
 }
 
-/* .p-column-filter-overlay {
-  position: fixed !important;
-  top: auto !important;
-  bottom: 20% !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 1000 !important;
-  background: #002344 !important;
-  border: 1px solid #002344 !important;
-  border-radius: 6px !important;
-  padding: 0.5rem !important;
-  width: 280px !important;
-  max-width: 90vw !important;
-  max-height: 60vh !important;
-}
-
-.p-column-filter-overlay::before {
-  content: '' !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  background: rgba(0, 0, 0, 0.4) !important;
-  z-index: -1 !important;
-} */
 
 .tipo-column-active {
     background-color: var(--site-secondary-color) !important;
 }
-
-/* .tipo-column-active .p-column-title,
-.tipo-column-active .p-sortable-column-icon,
-.tipo-column-active .p-column-filter-menu-button {
-    color: white !important;
-} */
 
 .column-active {
     background-color: var(--site-secondary-color) !important;
@@ -391,4 +347,12 @@ html, body {
 .p-datatable .p-datatable-thead > tr > th.column-active .p-column-filter-menu-button,
 .p-datatable .p-datatable-thead > tr > th.column-active .p-column-title {
     color: #002344 !important;
+}
+
+
+
+/* Adjust the header text to accommodate the filter icon */
+.filter-header .p-column-title {
+    flex: 1 !important;
+    text-align: center !important;
 }

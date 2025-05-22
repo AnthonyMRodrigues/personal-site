@@ -15,13 +15,14 @@ export const useS3Data = () => {
     const [data, setData] = useState<Perfume[]>([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-
+    console.log('hook useS3Data', data);
     const fetchData = async () => {
         setLoading(true);
         setError(null);
 
         try {
             const response = await fetch('/api/s3');
+            console.log('response', response);
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }

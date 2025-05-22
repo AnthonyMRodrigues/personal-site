@@ -54,6 +54,7 @@ export default function Home() {
                   <BrandIcon
                     brand={brands[index % brands.length]}
                     className="w-full h-full text-site-primary-color"
+                    isMobile={isMobile}
                   />
                 </div>
               ))}
@@ -70,6 +71,7 @@ export default function Home() {
                     className={`text-site-primary-color ${
                       index < 6 ? 'w-8 h-8' : 'w-12 h-12'
                     }`}
+                    isMobile={isMobile}
                   />
                 </div>
               ))}

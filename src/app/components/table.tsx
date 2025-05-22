@@ -52,7 +52,9 @@ const defaultFilters: DataTableFilterMeta = {
   preco_cartao: { value: null, matchMode: FilterMatchMode.BETWEEN },
 };
 
-
+// Add this CSS class definition right after the imports
+const headerClassName = (isActive: boolean) => 
+    `bg-site-primary-color text-white ${isActive ? 'column-active' : ''} filter-header`;
 
 export default function PerfumesTable() {
     const { data: perfumes, loading, error } = useS3Data();
@@ -420,7 +422,7 @@ export default function PerfumesTable() {
                     style={{ width: '7%' }}
                     filterField="marca"
                     align="center"
-                    headerClassName={`bg-site-primary-color text-white ${activeFilters.marca ? 'column-active' : ''}`}
+                    headerClassName={headerClassName(activeFilters.marca)}
                 />
                 <Column 
                     field="perfume" 
@@ -434,7 +436,7 @@ export default function PerfumesTable() {
                     style={{ width: '8%' }}
                     align="center"
                     bodyClassName="break-word-col"
-                    headerClassName={`bg-site-primary-color text-white ${activeFilters.perfume ? 'column-active' : ''}`}
+                    headerClassName={headerClassName(activeFilters.perfume)}
                 />
                 <Column 
                     field="tamanho" 
@@ -445,7 +447,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     style={{ width: '4%' }}
                     align="center"
-                    headerClassName={`bg-site-primary-color text-white remove-filter-margin ${activeFilters.tamanho ? 'column-active' : ''}`}
+                    headerClassName={`${headerClassName(activeFilters.tamanho)} remove-filter-margin`}
                 />
                 <Column 
                     field="tipo" 
@@ -456,7 +458,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     style={{ width: '5%' }}
                     align="center"
-                    headerClassName={`bg-site-primary-color text-white ${activeFilters.tipo ? 'column-active' : ''}`}
+                    headerClassName={headerClassName(activeFilters.tipo)}
                 />
                 <Column 
                     field="sexo" 
@@ -467,7 +469,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     style={{ width: '5%' }}
                     align="center"
-                    headerClassName={`bg-site-primary-color text-white ${activeFilters.sexo ? 'column-active' : ''}`}
+                    headerClassName={headerClassName(activeFilters.sexo)}
                 />
                 <Column 
                     field="preco_pix" 
@@ -478,8 +480,8 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     body={precoPixBodyTemplate}
                     style={{ width: '6%' }}
-                    align="center"
-                    headerClassName={`bg-site-primary-color text-white ${activeFilters.preco_pix ? 'column-active' : ''}`}
+                    // align="center"
+                    headerClassName={headerClassName(activeFilters.preco_pix)}
                 />
                 <Column 
                     field="preco_cartao" 
@@ -491,7 +493,7 @@ export default function PerfumesTable() {
                     body={precoCartaoBodyTemplate}
                     style={{ width: '6%' }}
                     align="center"
-                    headerClassName={`bg-site-primary-color text-white ${activeFilters.preco_cartao ? 'column-active' : ''}`}
+                    headerClassName={headerClassName(activeFilters.preco_cartao)}
                 />
                 {!isMobile && (
                     <Column 
