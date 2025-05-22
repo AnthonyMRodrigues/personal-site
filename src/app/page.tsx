@@ -103,6 +103,7 @@ export default function Home() {
         }}
         autoHide={true}
       />
+      {/* @ts-ignore */}
       <i className="custom-target-icon pi pi-info-circle p-text-secondary p-overlay-badge text-xs"
           data-pr-tooltip="CLIQUE NO NOME DA COLUNA PARA ORDENAR"
           data-pr-position="right"
