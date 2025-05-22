@@ -9,6 +9,7 @@ const s3Client = new S3Client({
 });
 
 export async function GET() {
+    console.log('GET request received');
     try {
         console.log('Fetching data from S3');
         const command = new GetObjectCommand({
@@ -30,7 +31,7 @@ export async function GET() {
     } catch (error) {
         console.error('Error fetching data from S3:', error);
         return NextResponse.json(
-            { error: 'Failed to fetch data from S3' },
+            { error: 'Failed to fetch data from S3', errorMessage: error },
             { status: 500 }
         );
     }
