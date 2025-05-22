@@ -1,5 +1,9 @@
 [
   {
+    "source": "/api/:path*",
+    "destination": "/api/:path*"
+  },
+  {
     "source": "/(.*)",
     "target": "/index.html",
     "status": "200"
