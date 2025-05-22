@@ -60,6 +60,7 @@ export default function PerfumesTable() {
     const [globalFilterValue, setGlobalFilterValue] = useState<string>('');
     const [isMobile, setIsMobile] = useState(false);
     const [initialLoad, setInitialLoad] = useState(true);
+    const [activeFilters, setActiveFilters] = useState<Record<string, boolean>>({});
     
     // For text filter debouncing
     const [localFilterValues, setLocalFilterValues] = useState({});
@@ -152,6 +153,21 @@ export default function PerfumesTable() {
         }
     }, [tipos, sexos, initialLoad]);
 
+    useEffect(() => {
+        setActiveFilters({
+            tipo: filters.tipo?.value?.length > 0 && filters.tipo?.value?.length < tipos.length,
+            sexo: filters.sexo?.value?.length > 0 && filters.sexo?.value?.length < sexos.length,
+            tamanho: filters.tamanho?.value?.length === 2 && 
+                (filters.tamanho?.value[0] !== minTamanho || filters.tamanho?.value[1] !== maxTamanho),
+            preco_pix: filters.preco_pix?.value?.length === 2 && 
+                (filters.preco_pix?.value[0] !== minPrecoPix || filters.preco_pix?.value[1] !== maxPrecoPix),
+            preco_cartao: filters.preco_cartao?.value?.length === 2 && 
+                (filters.preco_cartao?.value[0] !== minPrecoCartao || filters.preco_cartao?.value[1] !== maxPrecoCartao),
+            marca: !!filters.marca?.value,
+            perfume: !!filters.perfume?.value
+        });
+    }, [filters, tipos.length, sexos.length, minTamanho, maxTamanho, minPrecoPix, maxPrecoPix, minPrecoCartao, maxPrecoCartao]);
+
     const formatCurrency = (value: number) => {
         return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     };
@@ -201,7 +217,6 @@ export default function PerfumesTable() {
     };
 
     const textFilterTemplate = (options: ColumnFilterElementTemplateOptions) => {
-        console.log('textFilterTemplate', options);
         const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
             // For iOS devices
             if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
@@ -398,12 +413,6 @@ export default function PerfumesTable() {
                 removableSort
                 stripedRows
                 filterDisplay="menu"
-                // filterIcon={(options) => {
-                    
-                //     const isFilterActive = options.value && options.value.length !== tipos.length;
-                //     console.log('isFilterActive', isFilterActive);
-                //     return <i className={`pi ${isFilterActive ? 'pi-filter-fill' : 'pi-filter'}`}></i>;
-                // }}
             >
                 <Column 
                     field="marca" 
@@ -415,8 +424,7 @@ export default function PerfumesTable() {
                     style={{ width: '7%' }}
                     filterField="marca"
                     align="center"
-                    // bodyClassName="break-word-col"
-                    headerClassName="bg-site-primary-color text-white"
+                    headerClassName={`bg-site-primary-color text-white ${activeFilters.marca ? 'column-active' : ''}`}
                 />
                 <Column 
                     field="perfume" 
@@ -430,7 +438,7 @@ export default function PerfumesTable() {
                     style={{ width: '8%' }}
                     align="center"
                     bodyClassName="break-word-col"
-                    headerClassName="bg-site-primary-color text-white"
+                    headerClassName={`bg-site-primary-color text-white ${activeFilters.perfume ? 'column-active' : ''}`}
                 />
                 <Column 
                     field="tamanho" 
@@ -441,7 +449,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     style={{ width: '4%' }}
                     align="center"
-                    headerClassName="bg-site-primary-color text-white remove-filter-margin"
+                    headerClassName={`bg-site-primary-color text-white remove-filter-margin ${activeFilters.tamanho ? 'column-active' : ''}`}
                 />
                 <Column 
                     field="tipo" 
@@ -452,7 +460,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     style={{ width: '5%' }}
                     align="center"
-                    headerClassName="bg-site-primary-color text-white"
+                    headerClassName={`bg-site-primary-color text-white ${activeFilters.tipo ? 'column-active' : ''}`}
                 />
                 <Column 
                     field="sexo" 
@@ -463,7 +471,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     style={{ width: '5%' }}
                     align="center"
-                    headerClassName="bg-site-primary-color text-white"
+                    headerClassName={`bg-site-primary-color text-white ${activeFilters.sexo ? 'column-active' : ''}`}
                 />
                 <Column 
                     field="preco_pix" 
@@ -475,7 +483,7 @@ export default function PerfumesTable() {
                     body={precoPixBodyTemplate}
                     style={{ width: '6%' }}
                     align="center"
-                    headerClassName="bg-site-primary-color text-white"
+                    headerClassName={`bg-site-primary-color text-white ${activeFilters.preco_pix ? 'column-active' : ''}`}
                 />
                 <Column 
                     field="preco_cartao" 
@@ -487,7 +495,7 @@ export default function PerfumesTable() {
                     body={precoCartaoBodyTemplate}
                     style={{ width: '6%' }}
                     align="center"
-                    headerClassName="bg-site-primary-color text-white"
+                    headerClassName={`bg-site-primary-color text-white ${activeFilters.preco_cartao ? 'column-active' : ''}`}
                 />
                 {!isMobile && (
                     <Column 

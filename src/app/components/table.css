@@ -10,7 +10,7 @@
 
 .p-datatable .p-datatable-thead > tr > th {
   font-family: 'Montserrat', sans-serif !important;
-  background: #002344 !important;
+  background: #002344;
   color: white !important;
   font-weight: normal !important;
 }
@@ -40,7 +40,7 @@
 
 .p-datatable .p-datatable-thead > tr > th {
   border: 0.7px solid #2B3712 !important;
-  background: #002344 !important;
+  background: #002344;
   color: white !important;
 }
 
@@ -364,3 +364,23 @@ html, body {
   background: rgba(0, 0, 0, 0.4) !important;
   z-index: -1 !important;
 } */
+
+.tipo-column-active {
+    background-color: var(--site-secondary-color) !important;
+}
+
+.tipo-column-active .p-column-title,
+.tipo-column-active .p-sortable-column-icon,
+.tipo-column-active .p-column-filter-menu-button {
+    color: white !important;
+}
+
+.column-active {
+    background-color: var(--site-secondary-color) !important;
+}
+
+.column-active .p-column-title,
+.column-active .p-sortable-column-icon,
+.column-active .p-column-filter-menu-button {
+    color: white !important;
+}

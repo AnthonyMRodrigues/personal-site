@@ -5,13 +5,17 @@ import BrandIcon from "@/app/components/BrandIcon";
 import PerfumesTable from "@/app/components/table";
 import Footer from "@/app/components/footer/footer";
 import { useEffect, useState } from "react";
+import { Tooltip } from 'primereact/tooltip';
 
 export default function Home() {
   const [imageSize, setImageSize] = useState(250);
+  const [isMobile, setIsMobile] = useState(false);
   
   useEffect(() => {
     const handleResize = () => {
-      setImageSize(window.innerWidth <= 768 ? 250 : 500);
+      const mobile = window.innerWidth <= 768;
+      setImageSize(mobile ? 250 : 500);
+      setIsMobile(mobile);
     };
     
     handleResize(); // Set initial size
@@ -84,7 +88,34 @@ export default function Home() {
           </p>
         </section>
 
-        <section className="md:px-10">
+        <section className="md:px-10 relative">
+        {isMobile && (
+  <>
+    <div className="w-full flex justify-end mb-2 px-4">
+      <Tooltip 
+        target=".custom-target-icon" 
+        position="right"
+        style={{ 
+          fontSize: '0.7rem',
+          padding: '0.25rem 0.5rem',
+          whiteSpace: 'nowrap !important',
+          maxWidth: 'none !important'
+        }}
+        autoHide={true}
+      />
+      <i className="custom-target-icon pi pi-info-circle p-text-secondary p-overlay-badge text-xs"
+          data-pr-tooltip="CLIQUE NO NOME DA COLUNA PARA ORDENAR"
+          data-pr-position="right"
+          data-pr-at="right+20 top"
+          data-pr-my="left center-2"
+          data-pr-autohide="true"
+          style={{ fontSize: '0.85rem' }}
+      >
+      </i>
+    </div>
+  </>
+)}
+
           <PerfumesTable />
         </section>
         <Footer />

@@ -56,3 +56,32 @@ body {
     text-wrap: balance;
   }
 }
+
+.custom-tooltip .p-tooltip-text {
+    background-color: var(--site-primary-color);
+    color: white;
+    padding: 0.35rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.6rem;
+    font-weight: 400;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    max-width: 150px;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.custom-tooltip.p-tooltip-right .p-tooltip-arrow {
+    border-right-color: var(--site-primary-color);
+}
+
+.custom-tooltip.p-tooltip-left .p-tooltip-arrow {
+    border-left-color: var(--site-primary-color);
+}
+
+.custom-tooltip.p-tooltip-top .p-tooltip-arrow {
+    border-top-color: var(--site-primary-color);
+}
+
+.custom-tooltip.p-tooltip-bottom .p-tooltip-arrow {
+    border-bottom-color: var(--site-primary-color);
+}
