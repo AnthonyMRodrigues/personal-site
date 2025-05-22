@@ -109,7 +109,6 @@ export default function Home() {
           data-pr-position="right"
           data-pr-at="right+20 top"
           data-pr-my="left center-2"
-          data-pr-autohide="true"
           style={{ fontSize: '0.85rem' }}
       >
       </i>
