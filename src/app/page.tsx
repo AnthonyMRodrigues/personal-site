@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Tooltip } from 'primereact/tooltip';
 
 // Force dynamic page - prevents static generation
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export default function Home() {
   const [imageSize, setImageSize] = useState(250);

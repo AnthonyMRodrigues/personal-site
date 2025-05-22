@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3';
 
 // Force dynamic route - prevents static generation
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 const s3Client = new S3Client({
     region: process.env.AWS_REGION || 'us-east-1'
