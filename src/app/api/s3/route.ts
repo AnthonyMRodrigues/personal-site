@@ -9,11 +9,12 @@ const s3Client = new S3Client({
 });
 
 export async function GET() {
-    console.log('GET request received');
+    const bucket = process.env.AWS_BUCKET_NAME || 'miha-site-luccas';
+    console.log('GET request received', bucket);
     try {
         console.log('Fetching data from S3');
         const command = new GetObjectCommand({
-            Bucket: process.env.AWS_BUCKET_NAME || 'miha-site-luccas',
+            Bucket: bucket,
             Key: 'novo_perfumes.json',
         });
 
