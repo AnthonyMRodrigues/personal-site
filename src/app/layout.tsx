@@ -37,10 +37,41 @@ const futura = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Miha perfumes",
-  description: "Miha perfumes",
+  title: "Miha Perfumes | Encontre o perfume perfeito para você",
+  description: "Encontre o perfume perfeito para você. Explore nossa seleção de perfumes e descubra novos aromas que combinam com você.",
+  keywords: "perfume, fragrância, perfume recomendado, fragrância recomendada, fragrância para você, fragrância para homem, fragrância para mulher, fragrância para casal, fragrância para família, fragrância para amigos, 212, paco rabanne, chanel, dior, gucci, carolina herrera, calvin klein, versace, yves saint laurent, giorgio armani, prada, burberry, lancome, paco rabanne, jean paul gaultier, hugo boss, bvgari, tom ford",
+  authors: [{ name: "Miha" }],
+  creator: "Anthony Rodrigues",
+  publisher: "Anthony Rodrigues",
+  robots: "index, follow",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://mihaperfumes.com.br", // Replace with your actual domain
+    siteName: "Miha Perfumes",
+    title: "Miha Perfumes | Encontre o perfume perfeito para você",
+    description: "Encontre o perfume perfeito para você. Explore nossa seleção de perfumes e descubra novos aromas que combinam com você.",
+    images: [
+      {
+        url: "/images/icon.jpeg", // Replace with your actual OG image
+        width: 1200,
+        height: 630,
+        alt: "Miha Perfumes - Encontre o perfume perfeito para você",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Miha - AI-Powered Perfume Recommendations",
+    description: "Discover your perfect perfume with AI-powered recommendations",
+    images: ["/images/miha-logo.jpg"], // Replace with your actual Twitter image
+    creator: "@miha", // Replace with your Twitter handle
+  },
+  viewport: "width=device-width, initial-scale=1.0",
+  verification: {
+    google: "G-ND24C6D423", // Your Google Analytics ID
+  },
 };
-
 
 export default function RootLayout({
   children,
@@ -51,8 +82,7 @@ export default function RootLayout({
     <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="icon" href="/images/miha-logo.jpg" type="image/jpeg" />
-        <title>Miha perfumes</title>
+        <link rel="icon" href="/images/icon.jpeg" type="image/jpeg" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
