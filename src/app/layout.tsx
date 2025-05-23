@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   title: "Miha Perfumes | Fragrâncias Originais das Melhores Marcas",
   description: "Descubra fragrâncias originais diretamente das melhores marcas do mundo. Encontre o perfume perfeito para você com envio para todo o Brasil e atendimento personalizado. Sinta o luxo, viva a essência.",
   keywords: "perfumes importados, perfumes originais, fragrâncias de luxo, perfumes femininos, perfumes masculinos, perfumes para casal, perfumes recomendados, perfumes famosos, perfumes online, loja de perfumes, Miha Perfumes, 212, Paco Rabanne, Chanel, Dior, Gucci, Carolina Herrera, Calvin Klein, Versace, Yves Saint Laurent, Giorgio Armani, Prada, Burberry, Lancôme, Jean Paul Gaultier, Hugo Boss, Bvlgari, Tom Ford, Abercrombie & Fitch, AFNAN, Al Haramain, Al Wataniah, Amaran, Animale, Antonio Banderas, Armaf, Azzaro, Benetton, Boucheron, Brand Collection, Britney Spears, Brut, Cacharel, Chloé, Coach, Colcci, Corvette, Cuba, Davidoff, Diesel, Disney, Dolce & Gabbana, Emporio Armani, Everlast, Ferrari, Figaro, Forum, Galaxy Concept, Gilles Cantuel, Givenchy, Grès, Gusttavo Lima, iScents, Issey Miyake, Jacques Bogart, Jaguar, Joli Joli, Juicy Couture, Kate Spade, Kenzo, La Florentina, La Rive, Lacoste, Lamborghini, Lanvin, Lattafa, Linn Young, Lolita, Maison Alhambra, Manasik, Marc Jacobs, Marina de Bourbon, Mercedes-Benz, Molyneux, Mont'Anne, MontBlanc, Moschino, Mugler, Nazareno Gabrielli, New Brand, Nina Ricci, Nusuk, Orientica, Paloma Picasso, Paris Elysees, Paris Riviera, Police, Puccini, Puig, Ralph Lauren, Rochas, Saint Hilaire, Shakira, Style & Scents, Ted Lapidus, Tommy Hilfiger, Ulric de Varens, Valentino, Victoria's Secret, Victorinox, Viktor & Rolf, Women'secret, Boutique de Perfumes, Butique de perfumes",
-  authors: [{ name: "Miha" }],
+  authors: [{ name: "Anthony Rodrigues" }],
   creator: "Anthony Rodrigues",
   publisher: "Anthony Rodrigues",
   robots: "index, follow",
@@ -59,22 +59,44 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    title: "Miha Perfumes | Fragrâncias Originais das Melhores Marcas",
-    description: "Descubra fragrâncias originais diretamente das melhores marcas do mundo. Encontre o perfume perfeito para você com envio para todo o Brasil e atendimento personalizado. Sinta o luxo, viva a essência.",
-    images: ["/images/icon.png"], // Replace with your actual Twitter image
-    creator: "@miha", // Replace with your Twitter handle
-  },
   verification: {
     google: "G-ND24C6D423", // Your Google Analytics ID
   },
   icons: {
     icon: [
-      { url: '/images/icon.png', type: 'image/png' },
-      { url: '/images/icon.jpeg', type: 'image/jpeg' }
+      { url: '/images/icon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/images/icon.jpeg', type: 'image/jpeg', sizes: '32x32' },
+      { url: '/images/icon-192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/images/icon-512.png', type: 'image/png', sizes: '512x512' }
     ],
     apple: [
-      { url: '/images/icon.png', type: 'image/png' }
+      { url: '/images/apple-icon.png', type: 'image/png', sizes: '180x180' }
+    ],
+    shortcut: [
+      { url: '/images/icon.png' }
+    ],
+    other: [
+      {
+        rel: 'mask-icon',
+        url: '/images/safari-pinned-tab.svg',
+        color: '#f1d0a4'
+      }
+    ]
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Miha Perfumes',
+    startupImage: [
+      '/images/apple-splash-2048-2732.png',
+      '/images/apple-splash-1668-2388.png',
+      '/images/apple-splash-1536-2048.png',
+      '/images/apple-splash-1125-2436.png',
+      '/images/apple-splash-1242-2688.png',
+      '/images/apple-splash-828-1792.png',
+      '/images/apple-splash-1242-2208.png',
+      '/images/apple-splash-750-1334.png',
+      '/images/apple-splash-640-1136.png'
     ]
   },
 };
@@ -95,8 +117,8 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <link rel="icon" href="/images/icon.jpeg" type="image/jpeg" />
-        <link rel="icon" href="/images/icon.png" type="image/png" />
+        <link rel="icon" href="icon.png" sizes="any" />
+        <link rel="apple-touch-icon" href="apple-icon.png" sizes="any" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
