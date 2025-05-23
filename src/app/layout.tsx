@@ -53,9 +53,9 @@ export const metadata: Metadata = {
     description: "Encontre o perfume perfeito para você. Explore nossa seleção de perfumes e descubra novos aromas que combinam com você.",
     images: [
       {
-        url: "/images/icon.jpeg", // Replace with your actual OG image
-        width: 1200,
-        height: 630,
+        url: "/images/icon.png", // Replace with your actual OG image
+        width: 180,
+        height: 180,
         alt: "Miha Perfumes - Encontre o perfume perfeito para você",
       },
     ],
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Miha Perfumes | Fragrâncias Originais das Melhores Marcas",
     description: "Descubra fragrâncias originais diretamente das melhores marcas do mundo. Encontre o perfume perfeito para você com envio para todo o Brasil e atendimento personalizado. Sinta o luxo, viva a essência.",
-    images: ["/images/icon.jpeg"], // Replace with your actual Twitter image
+    images: ["/images/icon.png"], // Replace with your actual Twitter image
     creator: "@miha", // Replace with your Twitter handle
   },
   viewport: "width=device-width, initial-scale=1.0",
@@ -81,7 +81,7 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="icon" href="/images/icon.jpeg" type="image/jpeg" />
+        <link rel="icon" href="/images/icon.png" type="image/png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
