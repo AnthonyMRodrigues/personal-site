@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import {Montserrat, Lato, Cormorant_Garamond} from "next/font/google";
 import "./globals.css";
-// import "primereact/resources/themes/lara-dark-blue/theme.css";  //theme
 import "primereact/resources/themes/lara-light-blue/theme.css";
-import "primereact/resources/primereact.min.css";                  //core css
-import "primeicons/primeicons.css";                                //icons
+import "primereact/resources/primereact.min.css";
+import "primeicons/primeicons.css";
 import WhatsAppButton from '@/components/WhatsAppButton'
 import Script from 'next/script'
 
@@ -66,10 +65,23 @@ export const metadata: Metadata = {
     images: ["/images/icon.png"], // Replace with your actual Twitter image
     creator: "@miha", // Replace with your Twitter handle
   },
-  viewport: "width=device-width, initial-scale=1.0",
   verification: {
     google: "G-ND24C6D423", // Your Google Analytics ID
   },
+  icons: {
+    icon: [
+      { url: '/images/icon.png', type: 'image/png' },
+      { url: '/images/icon.jpeg', type: 'image/jpeg' }
+    ],
+    apple: [
+      { url: '/images/icon.png', type: 'image/png' }
+    ]
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1.0,
 };
 
 export default function RootLayout({
@@ -81,6 +93,7 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="icon" href="/images/icon.jpeg" type="image/jpeg" />
         <link rel="icon" href="/images/icon.png" type="image/png" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
