@@ -64,10 +64,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/images/icon.png', type: 'image/png', sizes: '32x32' },
-      { url: '/images/icon.jpeg', type: 'image/jpeg', sizes: '32x32' },
-      { url: '/images/icon-192.png', type: 'image/png', sizes: '192x192' },
-      { url: '/images/icon-512.png', type: 'image/png', sizes: '512x512' }
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/images/icon.png', type: 'image/png', sizes: '32x32' }
     ],
     apple: [
       { url: '/images/apple-icon.png', type: 'image/png', sizes: '180x180' }
@@ -117,8 +115,9 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <link rel="icon" href="icon.png" sizes="any" />
-        <link rel="apple-touch-icon" href="apple-icon.png" sizes="any" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="/images/apple-icon.png" />
+        <meta name="theme-color" content="#f1d0a4" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
