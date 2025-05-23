@@ -139,11 +139,6 @@
   width: 100% !important;
 }
 
-/* Ensure filters are properly displayed on mobile */
-.p-column-filter {
-  width: 100%;
-}
-
 .p-column-filter-overlay {
   width: 280px !important;
   max-width: 90vw !important;
@@ -208,14 +203,14 @@
     width: 0.7rem !important;
   }
 
-  .remove-filter-margin .p-column-filter-menu-button .p-button {
+  /* .remove-filter-margin .p-column-filter-menu-button .p-button {
     width: 2rem !important;
     height: 2rem !important;
   }
 
   .remove-filter-margin .p-column-filter-menu-button .p-button-icon {
     font-size: 1.2rem !important;
-  }
+  } */
 
   .p-column-filter-overlay,
   .p-multiselect-panel {
