@@ -62,40 +62,10 @@ export const metadata: Metadata = {
   verification: {
     google: "G-ND24C6D423", // Your Google Analytics ID
   },
-  icons: {
-    icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
-      { url: '/images/icon.png', type: 'image/png', sizes: '32x32' }
-    ],
-    apple: [
-      { url: '/images/apple-icon.png', type: 'image/png', sizes: '180x180' }
-    ],
-    shortcut: [
-      { url: '/images/icon.png' }
-    ],
-    other: [
-      {
-        rel: 'mask-icon',
-        url: '/images/safari-pinned-tab.svg',
-        color: '#f1d0a4'
-      }
-    ]
-  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
     title: 'Miha Perfumes',
-    startupImage: [
-      '/images/apple-splash-2048-2732.png',
-      '/images/apple-splash-1668-2388.png',
-      '/images/apple-splash-1536-2048.png',
-      '/images/apple-splash-1125-2436.png',
-      '/images/apple-splash-1242-2688.png',
-      '/images/apple-splash-828-1792.png',
-      '/images/apple-splash-1242-2208.png',
-      '/images/apple-splash-750-1334.png',
-      '/images/apple-splash-640-1136.png'
-    ]
   },
 };
 
@@ -115,9 +85,8 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="apple-touch-icon" href="/images/apple-icon.png" />
-        <meta name="theme-color" content="#f1d0a4" />
+        <link rel="icon" href="./favicon.ico" sizes="any" />
+        {/* <link rel="apple-touch-icon" href="/images/apple-icon.png" /> */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
@@ -130,6 +99,21 @@ export default function RootLayout({
             gtag('config', 'G-ND24C6D423');
           `}
         </Script>
+        <head>
+  <meta property="og:title" content="Miha Perfumes" />
+  <meta property="og:description" content="Fragrâncias Originais das Melhores Marcas" />
+  <meta property="og:image" content="https://mihaperfumes.com.br/images/icon.png" />
+  <meta property="og:url" content="https://mihaperfumes.com.br" />
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="Miha Perfumes" />
+  <meta name="twitter:title" content="Miha Perfumes" />
+  <meta name="twitter:description" content="Fragrâncias Originais das Melhores Marcas" />
+  <meta name="twitter:image" content="https://mihaperfumes.com.br/images/icon.png" />
+
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+</head>
     </head>
     <body className={`${montserrat.variable} ${lato.variable} ${cormorant.className} ${futura.variable} bg-site-primary-color min-h-screen`}>
       {children}

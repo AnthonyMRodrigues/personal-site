@@ -86,9 +86,7 @@
 }
 
 .p-datatable-header, .p-datatable-wrapper, .p-paginator {
-  /* background: #f1d0a4 !important; */
   color: #002344 !important;
-  border: 1px solid #f1d0a4 !important;
 }
 
 /* Filter styles */
@@ -231,6 +229,18 @@
     bottom: 0 !important;
     background: rgba(0, 0, 0, 0.4) !important;
     z-index: -1 !important;
+  }
+  .p-datatable-header, .p-datatable-wrapper, .p-paginator {
+    color: #002344 !important;
+    font-size: 0.75rem !important;
+    padding: 0rem !important;
+  }
+
+  .p-paginator .p-paginator-first,
+  .p-paginator .p-paginator-prev,
+  .p-paginator .p-paginator-next,
+  .p-paginator .p-paginator-last {
+    min-width: 2rem !important;
   }
 }
 
