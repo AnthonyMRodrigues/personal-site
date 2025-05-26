@@ -10,9 +10,7 @@ const s3Client = new S3Client({
 
 export async function GET() {
     const bucket = process.env.AWS_BUCKET_NAME || 'miha-site-luccas';
-    console.log('GET request received', bucket, s3Client);
     try {
-        console.log('Fetching data from S3');
         const command = new GetObjectCommand({
             Bucket: bucket,
             Key: 'novo_perfumes.json',
@@ -20,14 +18,12 @@ export async function GET() {
 
         const response = await s3Client.send(command);
         const jsonString = await response.Body?.transformToString();
-        console.log('Data received from S3:', jsonString);
         
         if (!jsonString) {
             throw new Error('No data received from S3');
         }
 
         const data = JSON.parse(jsonString);
-        console.log('Data parsed:', data);
         return NextResponse.json(data);
     } catch (error) {
         console.error('Error fetching data from S3:', error);

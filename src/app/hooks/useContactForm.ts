@@ -63,7 +63,6 @@ export const useS3Data = () => {
         setError(null);
 
         try {
-            console.log('fetching data, forceRefresh:', forceRefresh);
             // Check cache first if not forcing refresh
             if (!forceRefresh) {
                 const cached = getCachedData();
@@ -74,7 +73,6 @@ export const useS3Data = () => {
                 }
             }
 
-            console.log('Calling API');
             const response = await fetch('/api/s3', {
                 cache: 'no-store',
                 headers: {

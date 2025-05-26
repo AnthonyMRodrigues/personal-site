@@ -50,15 +50,17 @@ export const metadata: Metadata = {
     siteName: "Miha Perfumes",
     title: "Miha Perfumes | Fragrâncias Originais das Melhores Marcas",
     description: "Encontre o perfume perfeito para você. Explore nossa seleção de perfumes e descubra novos aromas que combinam com você.",
-    images: [
-      {
-        url: "/images/icon.png", // Replace with your actual OG image
-        width: 180,
-        height: 180,
-        alt: "Miha Perfumes - Encontre o perfume perfeito para você",
-      },
-    ],
+    // images:  "/images/icon.png", // Replace with your actual OG image
   },
+  // icons: {
+  //   icon: '/images/apple-icon.png',
+  //   shortcut: '/images/apple-icon.png',
+  //   apple: '/images/apple-icon.png',
+  //   other: {
+  //     rel: 'apple-touch-icon-precomposed',
+  //     url: '/apple-touch-icon-precomposed.png',
+  //   },
+  // },
   verification: {
     google: "G-ND24C6D423", // Your Google Analytics ID
   },
@@ -85,8 +87,11 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <link rel="icon" href="./favicon.ico" sizes="any" />
-        {/* <link rel="apple-touch-icon" href="/images/apple-icon.png" /> */}
+        <link rel="icon" href="/apple-touch-icon.png?v=1" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/apple-touch-icon.png?v=1" type="image/png" sizes="16x16" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=1" sizes="180x180" />
+        <link rel="icon" href="/apple-touch-icon.png?v=1" sizes="any" />
+        <link rel="shortcut icon" href="/apple-touch-icon.png" sizes="any" />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
@@ -99,21 +104,19 @@ export default function RootLayout({
             gtag('config', 'G-ND24C6D423');
           `}
         </Script>
-        <head>
-  <meta property="og:title" content="Miha Perfumes" />
-  <meta property="og:description" content="Fragrâncias Originais das Melhores Marcas" />
-  <meta property="og:image" content="https://mihaperfumes.com.br/images/icon.png" />
-  <meta property="og:url" content="https://mihaperfumes.com.br" />
-  <meta property="og:type" content="website" />
-  
-  <meta name="twitter:card" content="Miha Perfumes" />
-  <meta name="twitter:title" content="Miha Perfumes" />
-  <meta name="twitter:description" content="Fragrâncias Originais das Melhores Marcas" />
-  <meta name="twitter:image" content="https://mihaperfumes.com.br/images/icon.png" />
+        <meta property="og:title" content="Miha Perfumes" />
+        <meta property="og:description" content="Fragrâncias Originais das Melhores Marcas" />
+        <meta property="og:image" content="https://mihaperfumes.com.br/images/icon.png" />
+        <meta property="og:url" content="https://mihaperfumes.com.br" />
+        <meta property="og:type" content="website" />
+        
+        <meta name="twitter:card" content="Miha Perfumes" />
+        <meta name="twitter:title" content="Miha Perfumes" />
+        <meta name="twitter:description" content="Fragrâncias Originais das Melhores Marcas" />
+        <meta name="twitter:image" content="https://mihaperfumes.com.br/images/icon.png" />
 
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-</head>
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
     </head>
     <body className={`${montserrat.variable} ${lato.variable} ${cormorant.className} ${futura.variable} bg-site-primary-color min-h-screen`}>
       {children}
