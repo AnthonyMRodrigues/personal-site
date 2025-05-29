@@ -64,14 +64,14 @@ export const useS3Data = () => {
 
         try {
             // Check cache first if not forcing refresh
-            // if (!forceRefresh) {
-            //     const cached = getCachedData();
-            //     if (cached) {
-            //         setData(cached.data);
-            //         setLoading(false);
-            //         return;
-            //     }
-            // }
+            if (!forceRefresh) {
+                const cached = getCachedData();
+                if (cached) {
+                    setData(cached.data);
+                    setLoading(false);
+                    return;
+                }
+            }
 
             const response = await fetch('/api/s3', {
                 cache: 'no-store',
