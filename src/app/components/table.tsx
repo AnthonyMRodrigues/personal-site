@@ -404,7 +404,7 @@ export default function PerfumesTable() {
                 loading={loading} 
                 dataKey="id" 
                 filters={filters} 
-                globalFilterFields={['marca', 'perfume', 'tamanho', 'tipo', 'sexo', 'preco_pix', 'preco_cartao']} 
+                globalFilterFields={['marca', 'perfume']} 
                 header={header}
                 emptyMessage="NENHUM PERFUME ENCONTRADO." 
                 onFilter={(e) => setFilters(e.filters)}
