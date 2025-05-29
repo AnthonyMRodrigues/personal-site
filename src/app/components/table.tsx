@@ -480,7 +480,7 @@ export default function PerfumesTable() {
                     showFilterMatchModes={false} 
                     body={precoPixBodyTemplate}
                     style={{ width: '6%' }}
-                    // align="center"
+                    align="center"
                     headerClassName={headerClassName(activeFilters.preco_pix)}
                 />
                 <Column 
