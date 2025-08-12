@@ -123,19 +123,6 @@ export default function RootLayout({
             gtag('config', 'G-ND24C6D423');
           `}
         </Script>
-        <meta property="og:title" content="Miha Perfumes" />
-        <meta property="og:description" content="Fragrâncias Originais das Melhores Marcas" />
-        <meta property="og:image" content="https://mihaperfumes.com.br/images/icon.png" />
-        <meta property="og:url" content="https://mihaperfumes.com.br" />
-        <meta property="og:type" content="website" />
-        
-        <meta name="twitter:card" content="Miha Perfumes" />
-        <meta name="twitter:title" content="Miha Perfumes" />
-        <meta name="twitter:description" content="Fragrâncias Originais das Melhores Marcas" />
-        <meta name="twitter:image" content="https://mihaperfumes.com.br/images/icon.png" />
-
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
     </head>
     <body className={`${montserrat.variable} ${lato.variable} ${cormorant.className} ${futura.variable} bg-site-primary-color min-h-screen`}>
       {children}
