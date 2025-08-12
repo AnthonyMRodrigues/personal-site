@@ -46,23 +46,35 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: "https://mihaperfumes.com.br", // Replace with your actual domain
+    url: "https://mihaperfumes.com.br",
     siteName: "Miha Perfumes",
     title: "Miha Perfumes | Fragrâncias Originais das Melhores Marcas",
     description: "Encontre o perfume perfeito para você. Explore nossa seleção de perfumes e descubra novos aromas que combinam com você.",
-    // images:  "/images/icon.png", // Replace with your actual OG image
+    images: [
+      {
+        url: "https://mihaperfumes.com.br/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Miha Perfumes - Fragrâncias Originais das Melhores Marcas",
+      },
+    ],
   },
-  // icons: {
-  //   icon: '/images/apple-icon.png',
-  //   shortcut: '/images/apple-icon.png',
-  //   apple: '/images/apple-icon.png',
-  //   other: {
-  //     rel: 'apple-touch-icon-precomposed',
-  //     url: '/apple-touch-icon-precomposed.png',
-  //   },
-  // },
+  twitter: {
+    card: "summary_large_image",
+    title: "Miha Perfumes | Fragrâncias Originais das Melhores Marcas",
+    description: "Encontre o perfume perfeito para você. Explore nossa seleção de perfumes e descubra novos aromas que combinam com você.",
+    images: ["https://mihaperfumes.com.br/images/og-image.jpg"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   verification: {
-    google: "G-ND24C6D423", // Your Google Analytics ID
+    google: "G-ND24C6D423",
   },
   appleWebApp: {
     capable: true,
@@ -87,11 +99,18 @@ export default function RootLayout({
     <html lang="pt-BR">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-        <link rel="icon" href="/apple-touch-icon.png?v=1" type="image/png" sizes="32x32" />
-        <link rel="icon" href="/apple-touch-icon.png?v=1" type="image/png" sizes="16x16" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=1" sizes="180x180" />
-        <link rel="icon" href="/apple-touch-icon.png?v=1" sizes="any" />
-        <link rel="shortcut icon" href="/apple-touch-icon.png" sizes="any" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+        <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
+        
+        {/* WhatsApp specific meta tags */}
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:secure_url" content="https://mihaperfumes.com.br/images/og-image.jpg" />
+        <meta property="og:site_name" content="Miha Perfumes" />
+        <meta property="og:locale" content="pt_BR" />
+        
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-ND24C6D423"
           strategy="afterInteractive"
